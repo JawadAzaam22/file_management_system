@@ -1,0 +1,34 @@
+{
+"settingsScreen":"Settings"
+,"settings":"S E T T I N G S"
+,"about":"About Us"
+,"theme":"Theme"
+,"groups":"G R O U P S"
+,"invitation":"I N V I T A T I O N S"
+,"notifications":"N O T I F I C A T I O N S"
+,"language":"Language"
+,"changepassword":"change password"
+,"login":"LOGIN"
+,"email":"Email:"
+,"enteryouremail":"Enter Your Email",
+"password":"Password:",
+"enterpassword":"Enter Password",
+"forgetpassword":"Forget Your Password?",
+"signin":"Sign in",
+"donthaveaccount":"You Don't Have An Account?",
+"signup":"SIGN UP",
+"emailvalidation":"please enter your email",
+"passvalidation":"please enter your password",
+"register":"Register",
+"name":"Name:",
+"entername":"Enter Your Name",
+"username":"User Name:",
+"enterusername":"Enter Your UserName",
+"passwordconf":"Password Confirmation:",
+"enterpassconf":"Enter Password Confirmation",
+"passconfvalidation":"please enter your Password Confirmation",
+"namevalidation":"please enter your Name",
+"usernamevalidation":"please enter your User Name "
+,"dark":"Dark"
+,"light":"Light"
+}

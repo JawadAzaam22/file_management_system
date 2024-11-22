@@ -1,0 +1,36 @@
+{
+
+"settings":"الاعدادات"
+,"settingsScreen":"الإعدادات"
+,"about":"حول التطبيق"
+,"theme":"المظهر"
+,"groups":"المجموعات"
+,"invitation":"الدعوات"
+,"notifications":"الإشعارات"
+,"language":"اللغة"
+,"changepassword":"تغيير كلمة المرور"
+,"login":"تسجيل الدخول"
+,"email":":الإيميل"
+,"enteryouremail":"ادخل ايميلك"
+,"password":":كلمة المرور"
+,"enterpassword":"ادخل كلمة المرور"
+,"forgetpassword":"هل نسيت كلمة السر؟"
+,"signin":"تسجيل الدخول"
+,"donthaveaccount":"لا تمتلك حساب؟"
+,"signup":"التسجيل على حساب"
+,"emailvalidation":"الرجاء ادخال الايميل"
+,"passvalidation":"الرجاء ادخال كلمة السر"
+,"register":"التسجيل على حساب"
+,"name":":الاسم"
+,"entername":"ادخل اسمك"
+,"username":":اسم المستخدم"
+,"enterusername":"ادخل اسم المستخدم"
+,"passwordconf":":تأكيد كلمة المرور"
+,"enterpassconf":"أعد كتابة كلمة المرور",
+"passconfvalidation":"الرجاء ادخال تأكيد كلمة المرور",
+"namevalidation":"الرجاء ادخال الاسم",
+"usernamevalidation":"الرجاء ادخال اسم المستخدم"
+,"dark":"داكن"
+,"light":"فاتح"
+
+}

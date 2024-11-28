@@ -1,6 +1,11 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
+
 import 'package:file_management_system/Bindings/invitations_bindings.dart';
 import 'package:file_management_system/View/screens/invitations_screen.dart';
+
+import 'package:file_management_system/Bindings/about_us_bindings.dart';
+import 'package:file_management_system/View/screens/about_us_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -93,6 +98,7 @@ class MyApp extends StatelessWidget {
               binding: ProfileBindings(),
             ),
 
+
             GetPage(
                     name: "/create_groub",
                     page: () =>  CreateGroubScreen(),
@@ -124,6 +130,13 @@ class MyApp extends StatelessWidget {
                     binding: ForgetPasswordBindings(),
                   ),
 
+
+
+            GetPage(
+              name: "/aboutUs",
+              page: () => AboutUsScreen(),
+              binding: AboutUsBindings(),
+            ),
 
           ]),
     );

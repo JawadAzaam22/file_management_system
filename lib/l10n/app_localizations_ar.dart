@@ -37,7 +37,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get login => 'تسجيل الدخول';
 
   @override
-  String get email => ':الإيميل';
+  String get email => 'الإيميل:';
 
   @override
   String get enteryouremail => 'ادخل ايميلك';
@@ -70,13 +70,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get register => 'التسجيل على حساب';
 
   @override
-  String get name => ':الاسم';
+  String get name => 'الاسم:';
 
   @override
   String get entername => 'ادخل اسمك';
 
   @override
-  String get username => ':اسم المستخدم';
+  String get username => 'اسم المستخدم:';
 
   @override
   String get enterusername => 'ادخل اسم المستخدم';
@@ -101,4 +101,25 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get light => 'فاتح';
+
+  @override
+  String get newGroup => 'اضف مجموعة جديدة';
+
+  @override
+  String get groupsScreen => 'المجموعات';
+
+  @override
+  String get yourGroups => 'مجموعاتك';
+
+  @override
+  String get memberOf => 'مجموعات أنت عضو فيها';
+
+  @override
+  String get welcomeSentence => '    شارك ملفاتك الآن ودع التعاون يبدأ!';
+
+  @override
+  String get aboutScreen => 'حول التطبيق';
+
+  @override
+  String get notificationScreen => 'الإشعارات';
 }

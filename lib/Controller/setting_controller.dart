@@ -12,6 +12,9 @@ class SettingController extends GetxController {
     // TODO: implement onInit
     super.onInit();
   }
+  void goToAboutUs() {
+    Get.toNamed("/aboutUs");
+  }
 
   void goToProfile() {
     Get.toNamed("/profile");

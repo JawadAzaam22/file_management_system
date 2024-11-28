@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+
 import '../Services/service.dart';
 
 class GroupsController extends GetxController{
@@ -13,4 +14,10 @@ late final UserService service;
 void navToVerifyAccount() {
   Get.offAndToNamed("/create_groub");
 }
+
+
+  void goToViewGroup() {
+    Get.toNamed("/viewGroup");
+  }
+
 }

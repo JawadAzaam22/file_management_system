@@ -286,6 +286,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Light'**
   String get light;
+
+  /// No description provided for @newGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'add a newGroup'**
+  String get newGroup;
+
+  /// No description provided for @groupsScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'Groups'**
+  String get groupsScreen;
+
+  /// No description provided for @yourGroups.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Groups'**
+  String get yourGroups;
+
+  /// No description provided for @memberOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Groups you are a member of'**
+  String get memberOf;
+
+  /// No description provided for @welcomeSentence.
+  ///
+  /// In en, this message translates to:
+  /// **'    Share your files now and let the collaboration begin!'**
+  String get welcomeSentence;
+
+  /// No description provided for @aboutScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'About us'**
+  String get aboutScreen;
+
+  /// No description provided for @notificationScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notificationScreen;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

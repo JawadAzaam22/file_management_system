@@ -13,6 +13,7 @@ import '../Model/user_model.dart';
 import 'package:dio/dio.dart' as dio;
 
 import '../Services/service.dart';
+import '../UI/constants.dart';
 
 class RegisterController extends GetxController {
 
@@ -71,7 +72,7 @@ PlatformFile? image;
 
     }
   }
-  // Future<void> sinUp() async {
+  // Future<void> signUP() async {
   //   dio.Dio d = dio.Dio();
   //   if (formKey.currentState!.validate()) {
   //
@@ -82,15 +83,16 @@ PlatformFile? image;
   //       String fileName = image!.name;
   //
   //       dio.FormData formData = dio.FormData.fromMap({
+  //         "image": await dio.MultipartFile.fromBytes(
+  //           imageBytes,
+  //           filename: fileName,
+  //         ),
   //         "name": nameController.text,
   //         "username": userNameController.text,
   //         "email": emailController.text,
   //         "password": passwordController.text,
   //         "password_confirmation": passwordConfirmationController.text,
-  //         "profile_image": await dio.MultipartFile.fromBytes(
-  //           imageBytes,
-  //           filename: fileName,
-  //         ),
+  //
   //       });
   //
   //
@@ -98,12 +100,14 @@ PlatformFile? image;
   //
   //       _isLoading.value = true;
   //       dio.Response r =
-  //       await d.post("baseUrl/api/v1/auth/register",
+  //       await d.post("$baseURL/api/v1/auth/register",
   //           data: formData);
   //
-  //         if (r.statusCode == 200 && r.data["status"]=="success") {
+  //         if (r.statusCode == 200 ) {
   //           service.currentUser = UserModel.fromJson(r.data["data"]);
-  //           Get.offAndToNamed("/verifyEmail");
+  //           Get.offAndToNamed("/verify_account",arguments: {
+  //             "email":emailController.text,
+  //           });
   //         }
   //
   //
@@ -117,6 +121,62 @@ PlatformFile? image;
   //       Get.snackbar("Error", e.response?.data["message"] ?? e.message);
   //     }
   //   }}
+  Future<void> signUP() async {
+    dio.Dio d = dio.Dio();
+    if (formKey.currentState!.validate()) {
+      try {
+        // تحقق مما إذا كانت الصورة موجودة
+        if (image == null) {
+          Get.snackbar("Error", "Please select an image.");
+          return;
+        }
+
+
+        List<int> imageBytes = image!.bytes!;
+        String fileName = image!.name; // اسم الملف
+
+        // إعداد بيانات النموذج
+        dio.FormData formData = dio.FormData.fromMap({
+          "image": await dio.MultipartFile.fromBytes(
+            imageBytes,
+            filename: fileName,
+          ),
+          "name": nameController.text,
+          "username": userNameController.text,
+          "email": emailController.text,
+          "password": passwordController.text,
+          "password_confirmation": passwordConfirmationController.text,
+        });
+
+        _isLoading.value = true;
+
+        // إرسال الطلب
+        dio.Response r = await d.post("$baseURL/api/v1/auth/register", data: formData);
+
+        // تحقق من حالة الاستجابة
+        if (r.statusCode == 200) {
+          service.currentUser = UserModel.fromJson(r.data["data"]);
+          Get.offAndToNamed("/verify_account", arguments: {
+            "email": emailController.text,
+          });
+        } else {
+          Get.snackbar("Error", r.data["message"] ?? "An error occurred");
+        }
+
+      } on dio.DioException catch (e) {
+        print("Dio Exception: ${e.response?.data}");
+        _isLoading.value = false;
+        Get.snackbar("Error", e.response?.data["message"] ?? e.message);
+        print( e.response?.data["message"]);
+      } catch (e) {
+        print("General Exception: $e");
+        _isLoading.value = false;
+        Get.snackbar("Error", "An unexpected error occurred.");
+      } finally {
+        _isLoading.value = false; // تأكد من إيقاف التحميل في النهاية
+      }
+    }
+  }
 
 
 
@@ -124,11 +184,11 @@ PlatformFile? image;
     Get.offAndToNamed("/verify_account");
   }
 
-  void signUP(){
-    if (formKey.currentState!.validate()) {
-
-    }
-
-
-  }
+  // void signUP(){
+  //   if (formKey.currentState!.validate()) {
+  //
+  //   }
+  //
+  //
+  // }
 }

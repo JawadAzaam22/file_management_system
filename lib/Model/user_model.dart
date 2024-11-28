@@ -1,11 +1,11 @@
 class UserModel{
-  UserModel({this.id,this.name,this.email,this.username,this.profile_image});
+  UserModel({this.id,this.name,this.email,this.username,this.image_path});
 
   int? id;
   String? name;
   String? email;
   String? username;
-  String? profile_image;
+  String? image_path;
 
 
 
@@ -16,7 +16,7 @@ class UserModel{
       name: data["name"],
       email: data["email"],
       username: data["username"],
-      profile_image: data["profile_image"],
+      image_path: data["image_path"],
 
 
     );

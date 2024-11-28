@@ -17,11 +17,16 @@ import 'Bindings/forget_password/verify_code_bindings.dart';
 import 'Bindings/home_bindings.dart';
 import 'Bindings/initial_bindings.dart';
 import 'Bindings/login_bindings.dart';
+import 'Bindings/pre_version_bindings.dart';
 import 'Bindings/profile_bindings.dart';
 import 'Bindings/register_bindings.dart';
 import 'Bindings/report_bindings.dart';
 import 'Bindings/splash_bindings.dart';
+
 import 'Bindings/verify_account_bindings.dart';
+
+import 'Bindings/view_group_bindings.dart';
+
 import 'UI/color.dart';
 import 'View/screens/create_groub_screen.dart';
 import 'View/screens/forget_password/forget_password_screen.dart';
@@ -29,11 +34,16 @@ import 'View/screens/forget_password/reset_password_screen.dart';
 import 'View/screens/forget_password/verify_code_screen.dart';
 import 'View/screens/home_screen.dart';
 import 'View/screens/login_screen.dart';
+import 'View/screens/pre_version_screen.dart';
 import 'View/screens/profile_screen.dart';
 import 'View/screens/register_screen.dart';
 import 'View/screens/report_screen.dart';
 import 'View/screens/splash_screen.dart';
+
 import 'View/screens/verify_account_screen.dart';
+
+import 'View/screens/view_group_screen.dart';
+
 import 'l10n/app_localizations.dart';
 
 void main() async {
@@ -99,6 +109,7 @@ class MyApp extends StatelessWidget {
             ),
 
 
+
             GetPage(
                     name: "/create_groub",
                     page: () =>  CreateGroubScreen(),
@@ -136,6 +147,18 @@ class MyApp extends StatelessWidget {
               name: "/aboutUs",
               page: () => AboutUsScreen(),
               binding: AboutUsBindings(),
+            ),
+
+
+            GetPage(
+              name: "/viewGroup",
+              page: () =>  ViewGroupScreen(),
+              binding: ViewGroupBindings(),
+            ),
+            GetPage(
+              name: "/preVersion",
+              page: () =>  const PreVersionScreen(),
+              binding: PreVersionBindings(),
             ),
 
           ]),

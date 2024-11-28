@@ -31,7 +31,7 @@ class LoginController extends GetxController {
   }
 
   void navToForgetPassword() {
-    Get.offAndToNamed("/signup");
+    Get.offAndToNamed("/forget_password");
   }
 
   void signIn() async {

@@ -7,3 +7,7 @@ class ProfileController extends GetxController {
   final TextEditingController userNameController = TextEditingController(text:"deemh");
   final TextEditingController emailController = TextEditingController(text: "deemh@gmail.com");
 }
+
+
+
+

@@ -146,7 +146,7 @@ class LoginScreen extends GetView<LoginController> {
                               SizedBox(height: 10),
                               TextButton(
                                 onPressed: () {
-                                  //
+                                  controller.navToForgetPassword();
                                 },
                                 child: Text(
                                   "Forget Your Password?",

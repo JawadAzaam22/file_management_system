@@ -299,7 +299,7 @@ class RegisterScreen extends StatelessWidget {
                                     height: 40,
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        //
+                                        controller.navToVerifyAccount();
                                       },
 
                                       style: ElevatedButton.styleFrom(

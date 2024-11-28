@@ -120,6 +120,9 @@ PlatformFile? image;
 
 
 
+  void navToVerifyAccount() {
+    Get.offAndToNamed("/verify_account");
+  }
 
   void signUP(){
     if (formKey.currentState!.validate()) {

@@ -29,6 +29,7 @@ class AppTheme {
   static final ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     primaryColor: const Color(0xFF1A649A),
+    canvasColor: const Color(0xFF034473),
 
     //buttonColor
 
@@ -53,6 +54,20 @@ class AppTheme {
       colors: isDarkMode
           ? [const Color(0xFF1A649A), const Color(0xFF034473)]
           : [const Color(0xFF2196F3), const Color(0xFFBBDEFB)],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    );
+  }
+  static LinearGradient buttonGradient(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    return LinearGradient(
+      colors: isDarkMode
+          ? [const Color(0xFF0596FF),
+        const Color(0xFF052F4D)]
+          : [
+        const Color(0xFF2196F3),
+        const Color(0xFFBBDEFB)
+      ], // تدرج أزرق فاتح
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
     );

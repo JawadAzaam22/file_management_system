@@ -6,15 +6,19 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'Bindings/home_bindings.dart';
 import 'Bindings/initial_bindings.dart';
 import 'Bindings/login_bindings.dart';
+import 'Bindings/pre_version_bindings.dart';
 import 'Bindings/profile_bindings.dart';
 import 'Bindings/register_bindings.dart';
 import 'Bindings/splash_bindings.dart';
+import 'Bindings/view_group_bindings.dart';
 import 'UI/color.dart';
 import 'View/screens/home_screen.dart';
 import 'View/screens/login_screen.dart';
+import 'View/screens/pre_version_screen.dart';
 import 'View/screens/profile_screen.dart';
 import 'View/screens/register_screen.dart';
 import 'View/screens/splash_screen.dart';
+import 'View/screens/view_group_screen.dart';
 import 'l10n/app_localizations.dart';
 
 void main() async {
@@ -72,6 +76,16 @@ class MyApp extends StatelessWidget {
               name: "/profile",
               page: () => ProfileScreen(),
               binding: ProfileBindings(),
+            ),
+            GetPage(
+              name: "/viewGroup",
+              page: () =>  ViewGroupScreen(),
+              binding: ViewGroupBindings(),
+            ),
+            GetPage(
+              name: "/preVersion",
+              page: () =>  const PreVersionScreen(),
+              binding: PreVersionBindings(),
             ),
           ]),
     );

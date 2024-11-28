@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sidebarx/sidebarx.dart';
+
 import '../../UI/color.dart';
 import '../widgets/side_barx.dart';
 
@@ -22,21 +23,21 @@ class HomeScreen extends GetView<SidebarXController> {
           key: _key,
           appBar: isSmallScreen
               ? AppBar(
-                  backgroundColor:
-                      Theme.of(context).colorScheme.primaryContainer,
-                  leading: IconButton(
-                    onPressed: () {
-                      _key.currentState?.openDrawer();
-                    },
-                    icon: Icon(
-                      Icons.menu,
-                      color: Theme.of(context).iconTheme.color,
-                    ),
-                  ),
-                )
+            backgroundColor:
+            Theme.of(context).colorScheme.primaryContainer,
+            leading: IconButton(
+              onPressed: () {
+                _key.currentState?.openDrawer();
+              },
+              icon: Icon(
+                Icons.menu,
+                color: Theme.of(context).iconTheme.color,
+              ),
+            ),
+          )
               : null,
           drawer:
-              (isSmallScreen) ? ExampleSidebarX(controller: controller) : null,
+          (isSmallScreen) ? ExampleSidebarX(controller: controller) : null,
           body: Row(
             children: [
               if (!isSmallScreen) ExampleSidebarX(controller: controller),

@@ -101,4 +101,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get light => 'Light';
+
+  @override
+  String get newGroup => 'add a newGroup';
+
+  @override
+  String get groupsScreen => 'Groups';
+
+  @override
+  String get yourGroups => 'Your Groups';
+
+  @override
+  String get memberOf => 'Groups you are a member of';
+
+  @override
+  String get welcomeSentence => '    Share your files now and let the collaboration begin!';
+
+  @override
+  String get aboutScreen => 'About us';
+
+  @override
+  String get notificationScreen => 'Notifications';
 }

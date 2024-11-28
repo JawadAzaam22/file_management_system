@@ -31,4 +31,11 @@
 "usernamevalidation":"please enter your User Name "
 ,"dark":"Dark"
 ,"light":"Light"
+,"newGroup":"add a newGroup"
+,"groupsScreen":"Groups"
+,"yourGroups":"Your Groups"
+,"memberOf":"Groups you are a member of"
+,"welcomeSentence":"    Share your files now and let the collaboration begin!"
+,"aboutScreen":"About us"
+,"notificationScreen":"Notifications"
 }

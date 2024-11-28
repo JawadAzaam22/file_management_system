@@ -19,10 +19,7 @@ class CustomFormField extends StatelessWidget {
       controller: textEditingController,
       style: TextStyle(color:  Theme.of(context).textTheme.bodyLarge?.color,),
       decoration: InputDecoration(
-        label: CustomText(
-          text: label,
-          fontsize: 20,
-        ),
+        label:Text(label,style: TextStyle(fontSize: 20),),
         border: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.grey),
         ),

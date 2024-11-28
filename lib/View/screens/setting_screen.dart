@@ -19,89 +19,96 @@ class SettingScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Expanded(
-                flex: 1,
-                child: Container(
-                  child: Center(
-                    child: CustomText(
-                      text: AppLocalizations.of(context)!.settingsScreen,
-                     // alignment: Alignment.topCenter,
+              flex: 1,
+              child: Container(
+                child: Text(
+                  AppLocalizations.of(context)!.settingsScreen,
+                  style: TextStyle(
+                      fontSize: 60,
                       fontWeight: FontWeight.bold,
-                      fontsize: 60,
-                    ),
-                  ),
-                )),
+                      color: Theme.of(context).textTheme.bodyLarge?.color),
+                ),
+              ),
+            ),
             Expanded(
               flex: 1,
-              child: InkWell(
-                onTap: () {
-                  settingController.goToProfile();
-                },
-                child: Container(
-                  height: 250,
-                  width: 1100,
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.primaryContainer,
-                      borderRadius: BorderRadius.circular(10),
-                      shape: BoxShape.rectangle,
-                      border:
-                          Border.all(color: Colors.grey.shade500, width: 1)),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 3,
-                        child: Container(
-                          child: Center(
-                            child: Container(
-                              width: 180,
-                              height: 180,
-                              decoration: const ShapeDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage("images/profil.jpg"),
-                                  fit: BoxFit.fill,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: InkWell(
+                  onTap: () {
+                    settingController.goToProfile();
+                  },
+                  child: Container(
+                    width: 800,
+                    margin: EdgeInsetsDirectional.only(end: 150),
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primaryContainer,
+                        borderRadius: BorderRadius.circular(10),
+                        shape: BoxShape.rectangle,
+                        border:
+                            Border.all(color: Colors.grey.shade500, width: 1)),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 3,
+                          child: Container(
+                            child: Center(
+                              child: Container(
+                                width: 180,
+                                height: 180,
+                                decoration: const ShapeDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage("images/profil.jpg"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                  shape: OvalBorder(),
                                 ),
-                                shape: OvalBorder(),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      // Expanded(flex: 1, child: SizedBox()),
-                      Expanded(
-                        flex: 12,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            CustomText(
-                              text: "deemh alaisame",
-                              fontsize: 30,
-                              //alignment: Alignment.topLeft,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            Row(
-                              // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                CustomText(
-                                  text: "deemh",
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15),
-                                  child: Container(
-                                    width: 2,
-                                    height: 20,
-                                    color: Theme.of(context).dividerColor,
+                        Expanded(flex: 1, child: SizedBox()),
+                        Expanded(
+                          flex: 12,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "deemh alaisame",
+                                style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge
+                                        ?.color),
+                              ),
+                              Row(
+                                // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  CustomText(
+                                    text: "deemh",
                                   ),
-                                ),
-                                CustomText(
-                                  text: "deemhalaisame@gmail.com",
-                                )
-                              ],
-                            )
-                          ],
+                                  Padding(
+                                    padding: const EdgeInsets.all(15),
+                                    child: Container(
+                                      width: 2,
+                                      height: 20,
+                                      color: Theme.of(context).dividerColor,
+                                    ),
+                                  ),
+                                  CustomText(
+                                    text: "deemhalaisame@gmail.com",
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -113,55 +120,37 @@ class SettingScreen extends StatelessWidget {
                     SizedBox(
                       height: 30,
                     ),
-                    // Container(
-                    //   height: 40,
-                    //   width: 200,
-                    //   child: ElevatedButton(
-                    //       onPressed: () {
-                    //         settingController.changeLanguage("ar");
-                    //       },
-                    //       style: ElevatedButton.styleFrom(
-                    //         backgroundColor: Theme.of(context).primaryColor,
-                    //         shape: RoundedRectangleBorder(
-                    //           borderRadius: BorderRadius.circular(7.11),
-                    //         ),
-                    //       ),
-                    //       child: Row(
-                    //         children: [
-                    //           Icon(Icons.language,
-                    //               color: Theme.of(context).iconTheme.color),
-                    //           CustomText(
-                    //             alignment: Alignment.center,
-                    //             text: Intl.message("language"),
-                    //           ),
-                    //         ],
-                    //       )),
-                    // ),
                     Container(
                       height: 40,
                       width: 200,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).primaryColor,
+                          borderRadius: BorderRadius.circular(7.11),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.2),
+                              spreadRadius: 0,
+                              blurRadius: 1,
+                              offset: Offset(0, 1),
+                            ),
+                          ]),
                       child: PopupMenuButton<String>(
                         onSelected: (String value) {
                           settingController.changeLanguage(value);
                         },
-                        child: ElevatedButton(
-                          onPressed: null,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Theme.of(context).primaryColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(7.11),
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(Icons.language,
-                                  color: Theme.of(context).iconTheme.color),
-                              CustomText(
+                        child: Row(
+                          children: [
+                            SizedBox(width: 22),
+                            Icon(Icons.language,
+                                color: Theme.of(context).iconTheme.color),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: CustomText(
                                 alignment: Alignment.center,
                                 text: AppLocalizations.of(context)!.language,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                         itemBuilder: (BuildContext context) {
                           return [
@@ -183,7 +172,17 @@ class SettingScreen extends StatelessWidget {
                     Container(
                       height: 40,
                       width: 200,
-                      color: Theme.of(context).primaryColor,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).primaryColor,
+                          borderRadius: BorderRadius.circular(7.11),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.2),
+                              spreadRadius: 0,
+                              blurRadius: 1,
+                              offset: Offset(0, 1),
+                            ),
+                          ]),
                       child: PopupMenuButton<bool>(
                         initialValue: settingController.isDarkMode,
                         onSelected: (bool value) {
@@ -194,24 +193,21 @@ class SettingScreen extends StatelessWidget {
                             AdaptiveTheme.of(context).setLight();
                           }
                         },
-                        child: ElevatedButton(
-                          onPressed: null,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Theme.of(context).primaryColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(7.11),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 22,
                             ),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(Icons.light_mode_rounded,
-                                  color: Theme.of(context).iconTheme.color),
-                              CustomText(
+                            Icon(Icons.light_mode_rounded,
+                                color: Theme.of(context).iconTheme.color),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: CustomText(
                                 alignment: Alignment.center,
                                 text: AppLocalizations.of(context)!.theme,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                         itemBuilder: (BuildContext context) {
                           return [
@@ -227,29 +223,36 @@ class SettingScreen extends StatelessWidget {
                         },
                       ),
                     ),
-                    // Container(
-                    //   height: 40,
-                    //   width: 200,
-                    //   child: ElevatedButton(
-                    //       onPressed: () {},
-                    //       style: ElevatedButton.styleFrom(
-                    //         backgroundColor: Theme.of(context).primaryColor,
-                    //         shape: RoundedRectangleBorder(
-                    //           borderRadius: BorderRadius.circular(7.11),
-                    //         ),
-                    //       ),
-                    //       child: Row(
-                    //         children: [
-                    //           Icon(Icons.info_outline_rounded,
-                    //               color: Theme.of(context).iconTheme.color),
-                    //           CustomText(
-                    //             text: Intl.message("about"),
-                    //             alignment: Alignment.center,
-                    //           ),
-                    //         ],
-                    //       )),
-                    // ),
-
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Container(
+                      height: 40,
+                      width: 200,
+                      child: ElevatedButton(
+                          onPressed: () {
+                            settingController.goToAboutUs();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Theme.of(context).primaryColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(7.11),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              Icon(Icons.info_outline_rounded,
+                                  color: Theme.of(context).iconTheme.color),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: CustomText(
+                                  text: AppLocalizations.of(context)!.about,
+                                  alignment: Alignment.center,
+                                ),
+                              ),
+                            ],
+                          )),
+                    ),
                   ],
                 )),
           ],

@@ -10,7 +10,7 @@
 ,"language":"اللغة"
 ,"changepassword":"تغيير كلمة المرور"
 ,"login":"تسجيل الدخول"
-,"email":":الإيميل"
+,"email":"الإيميل:"
 ,"enteryouremail":"ادخل ايميلك"
 ,"password":":كلمة المرور"
 ,"enterpassword":"ادخل كلمة المرور"
@@ -21,9 +21,9 @@
 ,"emailvalidation":"الرجاء ادخال الايميل"
 ,"passvalidation":"الرجاء ادخال كلمة السر"
 ,"register":"التسجيل على حساب"
-,"name":":الاسم"
+,"name":"الاسم:"
 ,"entername":"ادخل اسمك"
-,"username":":اسم المستخدم"
+,"username":"اسم المستخدم:"
 ,"enterusername":"ادخل اسم المستخدم"
 ,"passwordconf":":تأكيد كلمة المرور"
 ,"enterpassconf":"أعد كتابة كلمة المرور",
@@ -32,5 +32,11 @@
 "usernamevalidation":"الرجاء ادخال اسم المستخدم"
 ,"dark":"داكن"
 ,"light":"فاتح"
-
+,"newGroup": "اضف مجموعة جديدة"
+,"groupsScreen":"المجموعات"
+,"yourGroups":"مجموعاتك"
+,"memberOf":"مجموعات أنت عضو فيها"
+,"welcomeSentence": "    شارك ملفاتك الآن ودع التعاون يبدأ!"
+,"aboutScreen":"حول التطبيق"
+,"notificationScreen":"الإشعارات"
 }

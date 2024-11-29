@@ -67,7 +67,7 @@ class RegisterScreen extends StatelessWidget {
                               SizedBox(height: 10),
 
                               Center(
-                                child: controller.image == null
+                                child: controller.picked == null
                                     ? Stack(
                                   children: [
                                     CircleAvatar(
@@ -83,7 +83,7 @@ class RegisterScreen extends StatelessWidget {
                                         right: 0,
                                         child: InkWell(
                                           onTap: () {
-                                            controller.pickImage();
+                                            controller.pick();
                                           },
                                           child: CircleAvatar(
                                             radius: 20,
@@ -102,16 +102,17 @@ class RegisterScreen extends StatelessWidget {
                                   children: [
                                     CircleAvatar(
                                         radius: 70,
-                                        backgroundImage:MemoryImage(Uint8List.fromList( controller.image!.bytes!))
+                                        backgroundImage: MemoryImage(controller.webImage),
+                                        //MemoryImage(Uint8List.fromList( controller.image!.bytes!))
                                       // FileImage(File(
-                                      //     controller.finalFileImage!.path)),
+                                      //     controller.picked!.path)),
                                     ),
                                     Positioned(
                                         bottom: 0,
                                         right: 0,
                                         child: InkWell(
                                           onTap: () {
-                                            controller.pickImage();
+                                            controller.pick();
                                           },
                                           child: CircleAvatar(
                                             radius: 20,

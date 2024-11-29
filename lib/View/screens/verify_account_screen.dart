@@ -112,7 +112,7 @@ class VerifyAccountScreen extends GetView<VerifyAccountController> {
                                 height: 40,
                                 child: ElevatedButton(
                                   onPressed: () {
-
+                                  controller.sendOtpCode();
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor:

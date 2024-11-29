@@ -153,7 +153,7 @@ class ResetPasswordScreen extends GetView<ResetPasswordController> {
                                 height: 40,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    controller.navToOtp();
+                                    controller.resetpassword();
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor:

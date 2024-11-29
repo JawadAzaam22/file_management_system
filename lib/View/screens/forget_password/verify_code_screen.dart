@@ -113,7 +113,7 @@ class VerifyCodeScreen extends GetView<VerifyCodeController> {
                                 height: 40,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    controller.navToOtp();
+                                    controller.verifyOTP();
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor:

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
+import '../../Model/baseurl.dart';
 import '../../Services/service.dart';
 
 class ForgetPasswordController extends GetxController{
@@ -19,9 +20,16 @@ class ForgetPasswordController extends GetxController{
 
   late TextEditingController emailController ;
   void navToOtp(){
-    Get.toNamed ("/verify");
+    Get.toNamed ("/verify",arguments: {
+      "email" : emailController.text,
+    }
+    );
 
   }
+
+
+
+
 
   Future<void> sendResetRequest() async {
     dio.Dio d = dio.Dio();
@@ -31,22 +39,26 @@ class ForgetPasswordController extends GetxController{
         try {
           _isLoading.value = true;
           dio.Response r =
-          await d.post("baseUrl/api/users/login", data: {
+          await d.post("$baseUrl/api/v1/auth/forgetPassword/getOTP", data: {
              "email": emailController.text,
 
-          });
+          },
+
+          );
           if (r.statusCode == 200) {
             Get.snackbar(
               "نجاح",
-              "تم التحقق من الرمز بنجاح",
+              "تم الارسال الرمز بنجاح",
               snackPosition: SnackPosition.BOTTOM,
               backgroundColor: Colors.green,
               colorText: Colors.white,
             );
+            navToOtp();
+
           } else {
             Get.snackbar(
               "خطأ",
-              "خطأ أثناء التحقق من الرمز",
+              "خطأ أثناء كتابة email",
               snackPosition: SnackPosition.BOTTOM,
               backgroundColor: Colors.red,
               colorText: Colors.white,

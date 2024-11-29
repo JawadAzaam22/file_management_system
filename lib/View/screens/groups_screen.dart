@@ -1,5 +1,3 @@
-
-
 import 'package:file_management_system/Controller/create_greoup_contoller.dart';
 
 
@@ -14,7 +12,7 @@ import '../../l10n/app_localizations.dart';
 
 import '../widgets/custom_text.dart';
 
-class GroupsScreen extends StatelessWidget {
+class GroupsScreen extends GetView<GroupsController> {
    GroupsScreen({super.key});
   final GroupsController controller = Get.put(GroupsController());
   @override
@@ -56,28 +54,34 @@ class GroupsScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
-              flex: 4,
-              child: GridView.extent(
-                maxCrossAxisExtent: 150,
-                padding: const EdgeInsets.only(top: 10,right: 60,left: 60,bottom: 10),
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                children: List.generate(10, (index) {
-                  return Card(
-                    color: Theme.of(context).colorScheme.primaryContainer,
-                    child: index == 0
-                        ? const Icon(
-                            Icons.add,
-                          )
-                        : CustomText(
-                            text: 'Item $index',
-                            alignment: Alignment.center,
-                          ),
-                  );
-                }),
-              ),
-            ),
+        Obx(() =>     Expanded(
+          flex: 4,
+          child:controller.isLoading? Center(child: CircularProgressIndicator(),): GridView.extent(
+            maxCrossAxisExtent: 150,
+            padding: const EdgeInsets.only(top: 10,right: 60,left: 60,bottom: 10),
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            children:
+
+
+            List.generate(controller.myGroups.length+1, (index) {
+              return InkWell(
+                onTap: () => controller.goTo(index),
+                child: Card(
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  child: index == 0
+                      ? const Icon(
+                    Icons.add,
+                  )
+                      : CustomText(
+                    text: controller.myGroups[index-1].groupName.toString(),
+                    alignment: Alignment.center,
+                  ),
+                ),
+              );
+            }),
+          ),
+        ),),
             Expanded(
               flex: 1,
               child: Container(
@@ -91,25 +95,25 @@ class GroupsScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
-              flex: 4,
-              child: GridView.extent(
-                maxCrossAxisExtent: 150,
-                padding: const EdgeInsets.only(top: 10,right: 60,left: 60,bottom: 10),
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                children: List.generate(5, (index) {
-                  return Card(
-                    color: Theme.of(context).colorScheme.primaryContainer,
-                    child: CustomText(
+           Obx(() =>  Expanded(
+             flex: 4,
+             child: controller.isLoading? Center(child: CircularProgressIndicator(),):GridView.extent(
+               maxCrossAxisExtent: 150,
+               padding: const EdgeInsets.only(top: 10,right: 60,left: 60,bottom: 10),
+               mainAxisSpacing: 10,
+               crossAxisSpacing: 10,
+               children: List.generate(controller.otherGroups.length, (index) {
+                 return Card(
+                   color: Theme.of(context).colorScheme.primaryContainer,
+                   child: CustomText(
 
-                      text: 'Item $index',
-                      alignment: Alignment.center,
-                    ),
-                  );
-                }),
-              ),
-            ),
+                     text:controller.otherGroups[index].groupName.toString(),
+                     alignment: Alignment.center,
+                   ),
+                 );
+               }),
+             ),
+           ),),
           ],
         ),
       ),

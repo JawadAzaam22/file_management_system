@@ -116,7 +116,7 @@ class ForgetPasswordScreen extends GetView<ForgetPasswordController> {
                                 height: 40,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    controller.navToOtp();
+                                    controller.sendResetRequest();
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor:

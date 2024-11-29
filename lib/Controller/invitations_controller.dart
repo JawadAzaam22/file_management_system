@@ -1,6 +1,9 @@
-import 'package:dio/dio.dart';
+import 'package:dio/dio.dart' as dio;
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+
+import '../Model/user_model.dart';
 import '../Services/service.dart';
 
 class InvitationsController extends GetxController {
@@ -8,39 +11,13 @@ class InvitationsController extends GetxController {
   void onInit() {
     service = Get.find();
     super.onInit();
-    fetchInvitations();
+    //fetchInvitations();
   }
   late final UserService service;
   var invitations = <Map<String, String>>[].obs;
   var isLoading = false.obs;
 
-   Future<void> fetchInvitations() async {
-    isLoading.value = true;
-    try {
 
-      await Future.delayed(Duration(seconds: 2)); //
-      invitations.value = [
-        {"username": "User 1", "group": "Group A"},
-        {"username": "User 2 User 2 User 2 ", "group": "Group B"},
-        {"username": "User 3", "group": "Group C"},
-        {"username": "User 3", "group": "Group C"},
-        {"username": "User 3", "group": "Group C"},
-        {"username": "User 3", "group": "Group C"},
-        {"username": "User 3", "group": "Group C"},
-        {"username": "User 3", "group": "Group C"},
-        {"username": "User 3", "group": "Group C"},
-        {"username": "User 3", "group": "Group C"},
-        {"username": "User 3", "group": "Group C"},
-        {"username": "User 3", "group": "Group C"},
-        {"username": "User 3", "group": "Group C"},
-        {"username": "User 3", "group": "Group C"},
-      ];
-    } catch (e) {
-      print("Error: $e");
-    } finally {
-      isLoading.value = false;
-    }
-  }
 
 
   void acceptInvitation(int index) {
@@ -54,6 +31,57 @@ class InvitationsController extends GetxController {
     Get.snackbar("Info", "Invitation rejected.");
   }
 
+  // void fetchInvitations() async {
+  //   dio.Dio d = dio.Dio();
+  //
+  //
+  //   isLoading.value = true;
+  //   try {
+  //     dio.Response r = await d.post("$baseUrl/api/v1/user/filter",
+  //         options: dio.Options(
+  //           headers: {
+  //             "Authorization": "Bearer ${service.token}",
+  //           },
+  //         ));
+  //     print("sss");
+  //     print(searchResults.length);
+  //     RxList<UserModel> searches = RxList([]);
+  //     List<dynamic> temp = r.data["data"];
+  //     searches.addAll(temp.map((e) => UserModel.fromJson(e)));
+  //     searchResults.value = searches;
+  //     print(searchResults.length);
+  //     print(searches.length);
+  //     if (r.statusCode == 200) {
+  //       Get.snackbar(
+  //         "نجاح",
+  //         "تم الارسال  بنجاح",
+  //         snackPosition: SnackPosition.BOTTOM,
+  //         backgroundColor: Colors.green,
+  //         colorText: Colors.white,
+  //       );
+  //     } else {
+  //       Get.snackbar(
+  //         "خطأ",
+  //         "خطأ أثناء كتابة email",
+  //         snackPosition: SnackPosition.BOTTOM,
+  //         backgroundColor: Colors.red,
+  //         colorText: Colors.white,
+  //       );
+  //     }
+  //   } catch (e) {
+  //     Get.snackbar(
+  //       "خطأ",
+  //       "حدث خطأ: ${e.toString()}",
+  //       snackPosition: SnackPosition.BOTTOM,
+  //       backgroundColor: Colors.red,
+  //       colorText: Colors.white,
+  //     );
+  //     print("حدث خطأ: ${e.toString()}");
+  //   } finally {
+  //     isLoading.value = false;
+  //   }
+  // }
+
   // var invitations = <Map<String, String>>[].obs;
   // var isLoading = false.obs;
 
@@ -66,6 +94,33 @@ class InvitationsController extends GetxController {
   //     }
   //   } catch (e) {
   //     print("Error fetching invitations: $e");
+  //   } finally {
+  //     isLoading.value = false;
+  //   }
+  // }
+  // Future<void> fetchInvitations() async {
+  //   isLoading.value = true;
+  //   try {
+  //
+  //     await Future.delayed(Duration(seconds: 2)); //
+  //     invitations.value = [
+  //       {"username": "User 1", "group": "Group A"},
+  //       {"username": "User 2 User 2 User 2 ", "group": "Group B"},
+  //       {"username": "User 3", "group": "Group C"},
+  //       {"username": "User 3", "group": "Group C"},
+  //       {"username": "User 3", "group": "Group C"},
+  //       {"username": "User 3", "group": "Group C"},
+  //       {"username": "User 3", "group": "Group C"},
+  //       {"username": "User 3", "group": "Group C"},
+  //       {"username": "User 3", "group": "Group C"},
+  //       {"username": "User 3", "group": "Group C"},
+  //       {"username": "User 3", "group": "Group C"},
+  //       {"username": "User 3", "group": "Group C"},
+  //       {"username": "User 3", "group": "Group C"},
+  //       {"username": "User 3", "group": "Group C"},
+  //     ];
+  //   } catch (e) {
+  //     print("Error: $e");
   //   } finally {
   //     isLoading.value = false;
   //   }

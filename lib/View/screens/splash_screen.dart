@@ -27,7 +27,7 @@ class SplashScreen extends GetView<SplashController> {
                   height: 180,
                   decoration: ShapeDecoration(
                     image: DecorationImage(
-                      image: AssetImage("images/logo.jpg"),
+                      image: AssetImage('assets/images/logooo.png',),
                       fit: BoxFit.fill,
                     ),
                     shape: OvalBorder(),

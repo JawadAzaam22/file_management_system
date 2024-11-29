@@ -107,9 +107,6 @@ class MyApp extends StatelessWidget {
               page: () => ProfileScreen(),
               binding: ProfileBindings(),
             ),
-
-
-
             GetPage(
                     name: "/create_groub",
                     page: () =>  CreateGroubScreen(),

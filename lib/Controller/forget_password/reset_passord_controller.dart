@@ -1,6 +1,8 @@
+import 'package:file_management_system/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
+
 import '../../Services/service.dart';
 
 class ResetPasswordController extends GetxController{
@@ -9,10 +11,10 @@ class ResetPasswordController extends GetxController{
     service=Get.find();
     passwordController = TextEditingController();
     passwordConfirmationController = TextEditingController();
-
+    email =Get.arguments["email"];
     super.onInit();
   }
-
+late String email ;
   late TextEditingController passwordController ;
   late TextEditingController passwordConfirmationController ;
   RxBool isObscure = RxBool(true);
@@ -29,39 +31,57 @@ class ResetPasswordController extends GetxController{
   late final UserService service;
   bool get isLoading => _isLoading.value;
 
-  void navToOtp(){
-    Get.toNamed ("/reset_password");
+  void navTologin(){
+    Get.toNamed ("/login");
 
   }
 
-  Future<void> sendResetRequest() async {
+  Future<void> resetpassword() async {
     dio.Dio d = dio.Dio();
 
-    if (formKey.currentState!.validate()) {
-      if (formKey.currentState!.validate()){
-        try {
-          _isLoading.value = true;
-          dio.Response r =
-          await d.post("baseUrl/api/users/login", data: {
 
+    if (formKey.currentState!.validate()){
+      try {
+        _isLoading.value = true;
+        dio.Response r =
+        await d.post("$baseURL/api/v1/auth/reset-password", data: {
+          "password": passwordController.text,
+          "password_confirmation": passwordConfirmationController.text,
+        },
+          options: dio.Options(
+            headers: {
+             "Authorization": "Bearer ${service.token}",
+            },)
+          ,
+        );
+        if (r.statusCode == 200) {
+          Get.snackbar(
+            "نجاح",
+            "تم تحقق",
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green,
+            colorText: Colors.white,
+          );
+          navTologin();
 
-          });
-          if (r.data["message"]=="Login success") {
-            service.token = r.data["access_token"];
-            print(service.token.toString());
-            print("object");
-            print({r.data["access_token"]});
+        } else {
+          Get.snackbar(
+            "خطأ",
+            "خطأ email",
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+            colorText: Colors.white,
+          );
+        }
+      } catch (e) {
+        Get.snackbar(
+          "خطأ",
+          "حدث خطأ: ${e.toString()}",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      }}
 
-
-          } else {
-            Get.snackbar("Error", r.data["message"] ?? "error");
-          }
-          _isLoading.value = false;
-        } on dio.DioException catch (e) {
-          _isLoading.value = false;
-          print("eeeeeeeeeeeeeeeee");
-          Get.snackbar("Error", e.response?.data["message"] ?? e.message);
-        }}
-    }
   }
 }

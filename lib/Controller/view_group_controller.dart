@@ -6,15 +6,26 @@ import 'package:dio/dio.dart' as dio;
 import '../Model/groups_with_files_model.dart';
 import '../Services/service.dart';
 import '../UI/constants.dart';
+import 'package:dio/dio.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:html' as html;
+import 'package:dio/dio.dart' as dio;
+import '../Services/service.dart';
+import '../UI/constants.dart';
 
 class ViewGroupController extends GetxController {
+  late final UserService service;
+
   @override
   Future<void> onInit() async {
     groupID =Get.arguments["id"];
     service=Get.find();
     await getFiles();
 
-    super.onInit();
+      service=Get.find();
+       super.onInit();
   }
   RxBool  val = RxBool(false);
   bool  val1=false;
@@ -64,6 +75,32 @@ class ViewGroupController extends GetxController {
       update();
 
   }
+  Future<void>downloadFile(String fileName)async{
+    dio.Dio d = dio.Dio();
+    try {
+      final response = await d.get(
+        "$baseURL/api/v1/file/version/download/5",
+        options: dio.Options( headers: {
+          "Authorization": "Bearer ${service.token}",
+        },
+            responseType: ResponseType.bytes),
+      );
+      if (response.statusCode == 200) {
+        final blob = html.Blob([response.data]);
+        final url = html.Url.createObjectUrlFromBlob(blob);
+        final anchor = html.AnchorElement(href: url)
+          ..setAttribute('download', fileName)
+          ..click();
+
+        html.Url.revokeObjectUrl(url);
+
+      } else {
+        print('Failed to download file: ${response.statusCode}');
+      }
+    }catch (e) {
+      print('Error downloading file: $e');
+    }
+  }
 
 
 
@@ -79,7 +116,7 @@ class ViewGroupController extends GetxController {
   }
 
   final RxBool _isLoading = RxBool(false);
-  late final UserService service;
+
   bool get isLoading => _isLoading.value;
   PlatformFile? _file;
 

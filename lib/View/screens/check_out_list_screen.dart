@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../Controller/check_out_list_controller.dart';
+import '../../l10n/app_localizations.dart';
 
 class CheckOutList extends GetView<CheckOutListController> {
   const CheckOutList({super.key});
@@ -46,7 +47,7 @@ class CheckOutList extends GetView<CheckOutListController> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Reservation Time:", style: GoogleFonts.openSans(fontSize: 14)),
+                        Text( AppLocalizations.of(context)!.reservtime, style: GoogleFonts.openSans(fontSize: 14)),
                         Text("2024-11-27", style: GoogleFonts.openSans(fontSize: 14)),
                       ],
                     ),

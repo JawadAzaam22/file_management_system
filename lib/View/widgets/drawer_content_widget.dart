@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../Controller/view_group_controller.dart';
 import '../../UI/color.dart';
+import '../../l10n/app_localizations.dart';
 
 
 
@@ -29,7 +30,7 @@ class DrawerContent extends GetWidget<ViewGroupController> {
 
               MediaQuery.of(context).size.width < 850?SizedBox():Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text('data analyses',style: GoogleFonts.openSans(
+                child: Text('Group Name',style: GoogleFonts.openSans(
                     fontSize: 30
                 ),),
               ),
@@ -54,7 +55,9 @@ class DrawerContent extends GetWidget<ViewGroupController> {
                         ?Theme.of(context).primaryColor: null,
 
                   ),
-                  child: Center(child: Text("Group's Files")),
+                  child: Center(child: Text( AppLocalizations.of(context)!.groupsfiles,style: GoogleFonts.openSans(
+                    color: Theme.of(context).textTheme.bodyMedium?.color,
+                  ),)),
                 ),
               ),
               GestureDetector(
@@ -70,7 +73,9 @@ class DrawerContent extends GetWidget<ViewGroupController> {
                         ?Theme.of(context).primaryColor: null,
 
                   ),
-                  child: Center(child: Text('New Files Requests')),
+                  child: Center(child: Text( AppLocalizations.of(context)!.newfilesreq,style: GoogleFonts.openSans(
+                    color: Theme.of(context).textTheme.bodyMedium?.color,
+                  ),)),
                 ),
               ),
               GestureDetector(
@@ -86,7 +91,9 @@ class DrawerContent extends GetWidget<ViewGroupController> {
                         ?Theme.of(context).primaryColor: null,
 
                   ),
-                  child: Center(child: Text('My Reserved Files')),
+                  child: Center(child: Text( AppLocalizations.of(context)!.myreserved,style: GoogleFonts.openSans(
+                    color: Theme.of(context).textTheme.bodyMedium?.color,
+                  ),)),
                 ),
               ),
 
@@ -107,7 +114,9 @@ class DrawerContent extends GetWidget<ViewGroupController> {
                         ?Theme.of(context).primaryColor:null,
 
                   ),
-                  child: Center(child: Text('Members')),
+                  child: Center(child: Text( AppLocalizations.of(context)!.members,style: GoogleFonts.openSans(
+                    color: Theme.of(context).textTheme.bodyMedium?.color,
+                  ),)),
                 ),
               ),
               controller.isTapped.value?
@@ -207,6 +216,61 @@ class DrawerContent extends GetWidget<ViewGroupController> {
                           ],
                         ),
                         SizedBox(height: 10,),
+                        Container(
+                          width: 140,
+                          child: ElevatedButton(
+                            onPressed: (){
+
+                              showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  title: Text( AppLocalizations.of(context)!.alert,style: GoogleFonts.openSans(
+                                    color: Theme.of(context).textTheme.bodyMedium?.color,
+                                  ),),
+                                  content: Text(AppLocalizations.of(context)!.youwantdel,style: GoogleFonts.openSans(
+                                    color: Theme.of(context).textTheme.bodyMedium?.color,
+                                  ),),
+                                  actions: [
+                                    TextButton(
+                                      child: Text(AppLocalizations.of(context)!.close,style: GoogleFonts.openSans(
+                                        color: Theme.of(context).textTheme.bodyMedium?.color,
+                                      ),),
+                                      onPressed: () => Navigator.of(context).pop(),
+                                    ),
+                                    TextButton(
+                                      child: Text(AppLocalizations.of(context)!.delete,style: GoogleFonts.openSans(
+                                        color: Theme.of(context).textTheme.bodyMedium?.color,
+                                      ),),
+                                      onPressed: () {
+                                        //del
+                                       // controller.deleteFile();
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Theme.of(context).primaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(7.11),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+
+                                Text( AppLocalizations.of(context)!.invite,style: GoogleFonts.openSans(
+                                  color: Theme.of(context).textTheme.bodyMedium?.color,
+                                ),),
+                                Icon(Icons.insert_invitation_outlined,
+                                    size: 20,
+                                    color: Theme.of(context).iconTheme.color),
+                              ],
+                            ),
+                          ),
+                        ),
+
                       ],
                     ),
                   ),
@@ -217,7 +281,9 @@ class DrawerContent extends GetWidget<ViewGroupController> {
               Container(
                 width: 160,
                 child: ElevatedButton(
-                  onPressed: null,
+                  onPressed: (){
+
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Theme.of(context).primaryColor,
                     shape: RoundedRectangleBorder(
@@ -228,7 +294,9 @@ class DrawerContent extends GetWidget<ViewGroupController> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
 
-                      Text("Leave Group"),
+                      Text( AppLocalizations.of(context)!.leavegroup,style: GoogleFonts.openSans(
+                  color: Theme.of(context).textTheme.bodyMedium?.color,
+                ),),
                       Icon(Icons.logout_outlined,
                           size: 20,
                           color: Theme.of(context).iconTheme.color),

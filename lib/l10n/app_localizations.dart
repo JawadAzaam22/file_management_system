@@ -329,6 +329,7 @@ abstract class AppLocalizations {
   /// **'Notifications'**
   String get notificationScreen;
 
+
   /// No description provided for @invitationScreen.
   ///
   /// In en, this message translates to:
@@ -388,6 +389,139 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'code'**
   String get code;
+
+  /// No description provided for @groupsfiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Group\'s Files'**
+  String get groupsfiles;
+
+  /// No description provided for @newfilesreq.
+  ///
+  /// In en, this message translates to:
+  /// **'New Files Request'**
+  String get newfilesreq;
+
+  /// No description provided for @myreserved.
+  ///
+  /// In en, this message translates to:
+  /// **'My Reserved Files'**
+  String get myreserved;
+
+  /// No description provided for @members.
+  ///
+  /// In en, this message translates to:
+  /// **'Members'**
+  String get members;
+
+  /// No description provided for @invite.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite'**
+  String get invite;
+
+  /// No description provided for @leavegroup.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave Group'**
+  String get leavegroup;
+
+  /// No description provided for @filename.
+  ///
+  /// In en, this message translates to:
+  /// **'File Name'**
+  String get filename;
+
+  /// No description provided for @owner.
+  ///
+  /// In en, this message translates to:
+  /// **'Owner'**
+  String get owner;
+
+  /// No description provided for @lastmodified.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Modified'**
+  String get lastmodified;
+
+  /// No description provided for @size.
+  ///
+  /// In en, this message translates to:
+  /// **'Size'**
+  String get size;
+
+  /// No description provided for @download.
+  ///
+  /// In en, this message translates to:
+  /// **'Download'**
+  String get download;
+
+  /// No description provided for @preversion.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous Version'**
+  String get preversion;
+
+  /// No description provided for @report.
+  ///
+  /// In en, this message translates to:
+  /// **'Report'**
+  String get report;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @alert.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert'**
+  String get alert;
+
+  /// No description provided for @youwantdel.
+  ///
+  /// In en, this message translates to:
+  /// **'You Want Delete File?'**
+  String get youwantdel;
+
+  /// No description provided for @uploadedby.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploaded By:'**
+  String get uploadedby;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @uploadedtime.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploade Time:'**
+  String get uploadedtime;
+
+  /// No description provided for @accept.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept:'**
+  String get accept;
+
+  /// No description provided for @reject.
+  ///
+  /// In en, this message translates to:
+  /// **'Reject'**
+  String get reject;
+
+  /// No description provided for @reservtime.
+  ///
+  /// In en, this message translates to:
+  /// **'Reservation Time:'**
+  String get reservtime;
+
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../Controller/new_files_request_list_controller.dart';
+import '../../l10n/app_localizations.dart';
 
 
 class NewFilesRequestList extends GetView<NewFilesRequestListController> {
@@ -50,7 +51,7 @@ class NewFilesRequestList extends GetView<NewFilesRequestListController> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Uploaded by:",
+                        Text( AppLocalizations.of(context)!.uploadedby,
                             style: GoogleFonts.openSans(fontSize: 14)),
                         Text("John Doe",
                             style: GoogleFonts.openSans(fontSize: 14)),
@@ -60,7 +61,7 @@ class NewFilesRequestList extends GetView<NewFilesRequestListController> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Upload Time:",
+                        Text( AppLocalizations.of(context)!.uploadedtime,
                             style: GoogleFonts.openSans(fontSize: 14)),
                         Text("2024-11-27",
                             style: GoogleFonts.openSans(fontSize: 14)),
@@ -81,7 +82,7 @@ class NewFilesRequestList extends GetView<NewFilesRequestListController> {
                               borderRadius: BorderRadius.circular(7.11),
                             ),
                           ),
-                          child: Text("Download", style: GoogleFonts.openSans(
+                          child: Text( AppLocalizations.of(context)!.download, style: GoogleFonts.openSans(
                             color: Theme.of(context).textTheme.bodyMedium?.color,
                           ),),
                         ),
@@ -97,7 +98,7 @@ class NewFilesRequestList extends GetView<NewFilesRequestListController> {
                               borderRadius: BorderRadius.circular(7.11),
                             ),
                           ),
-                          child: Text("Accept",
+                          child: Text( AppLocalizations.of(context)!.accept,
                             style: GoogleFonts.openSans(
                             color: Theme.of(context).textTheme.bodyMedium?.color,
                           ),
@@ -115,7 +116,7 @@ class NewFilesRequestList extends GetView<NewFilesRequestListController> {
                               borderRadius: BorderRadius.circular(7.11),
                             ),
                           ),
-                          child: Text("Reject",
+                          child: Text( AppLocalizations.of(context)!.reject,
                             style: GoogleFonts.openSans(
                               color: Theme.of(context).textTheme.bodyMedium?.color,
                             ),),

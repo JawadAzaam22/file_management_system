@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../Controller/register_controller.dart';
 import '../../UI/color.dart';
+import '../../l10n/app_localizations.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -55,7 +56,7 @@ class RegisterScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Register",
+                                AppLocalizations.of(context)!.register,
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w300,
@@ -135,7 +136,7 @@ class RegisterScreen extends StatelessWidget {
                                 children: [
                                   SizedBox(height: 10),
                                   Text(
-                                    "Name:",
+                                    AppLocalizations.of(context)!.name,
                                     style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color, fontSize: 14),
                                   ),
                                   SizedBox(height: 10),
@@ -144,13 +145,13 @@ class RegisterScreen extends StatelessWidget {
                                     keyboardType: TextInputType.text,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return 'please enter your name';
+                                        return  AppLocalizations.of(context)!.namevalidation;
                                       }
                                       return null;
                                     },
 
                                     decoration: InputDecoration(
-                                      hintText: 'Enter Your Name',
+                                      hintText:  AppLocalizations.of(context)!.entername,
                                       prefixIcon: Icon(Icons.person_outline, color: Colors.grey,),
                                       hintStyle: TextStyle(
                                         fontSize: 12,
@@ -165,7 +166,7 @@ class RegisterScreen extends StatelessWidget {
                                   ),
                                   SizedBox(height: 10),
                                   Text(
-                                    "User Name:",
+                                    AppLocalizations.of(context)!.username,
                                     style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color, fontSize: 14),
                                   ),
                                   SizedBox(height: 10),
@@ -174,13 +175,13 @@ class RegisterScreen extends StatelessWidget {
                                     keyboardType: TextInputType.text,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return 'please enter your UserName';
+                                        return  AppLocalizations.of(context)!.usernamevalidation;
                                       }
                                       return null;
                                     },
 
                                     decoration: InputDecoration(
-                                      hintText: 'Enter Your UserName',
+                                      hintText:  AppLocalizations.of(context)!.enterusername,
                                       prefixIcon: Icon(Icons.person_outline, color: Colors.grey,),
                                       hintStyle: TextStyle(
                                         fontSize: 12,
@@ -195,7 +196,7 @@ class RegisterScreen extends StatelessWidget {
                                   ),
                                   SizedBox(height: 10),
                                   Text(
-                                    "Email:",
+                                    AppLocalizations.of(context)!.email,
                                     style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color,fontSize: 14),
                                   ),
                                   SizedBox(height: 10),
@@ -204,13 +205,13 @@ class RegisterScreen extends StatelessWidget {
                                     keyboardType: TextInputType.emailAddress,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return 'please enter your email';
+                                        return  AppLocalizations.of(context)!.emailvalidation;
                                       }
                                       return null;
                                     },
 
                                     decoration: InputDecoration(
-                                      hintText: 'Enter Your Email',
+                                      hintText:  AppLocalizations.of(context)!.enteryouremail,
                                       prefixIcon: Icon(Icons.email_outlined, color: Colors.grey,),
                                       hintStyle: TextStyle(
                                         fontSize: 12,
@@ -225,7 +226,7 @@ class RegisterScreen extends StatelessWidget {
                                   ),
                                   SizedBox(height: 10),
                                   Text(
-                                    "Password:",
+                                      AppLocalizations.of(context)!.password,
                                     style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color, fontSize: 14),
                                   ),
                                   SizedBox(height: 10),
@@ -234,13 +235,13 @@ class RegisterScreen extends StatelessWidget {
                                     obscureText: controller.isObscure.value,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return 'please enter your password';
+                                        return  AppLocalizations.of(context)!.passvalidation;
                                       }
                                       return null;
                                     },
 
                                     decoration: InputDecoration(
-                                      hintText: 'Enter Password',
+                                      hintText:  AppLocalizations.of(context)!.enterpassword,
                                       prefixIcon: Icon(Icons.password_outlined, color: Colors.grey,),
                                       suffixIcon: IconButton(icon: Icon(controller.isObscure.value ? Icons.visibility_outlined
                                           :Icons.visibility_off_outlined,color: Colors.grey,),
@@ -261,7 +262,7 @@ class RegisterScreen extends StatelessWidget {
 
                                   SizedBox(height: 10),
                                   Text(
-                                    "Password Confirmation:",
+                                    AppLocalizations.of(context)!.passwordconf,
                                     style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color,fontSize: 14),
                                   ),
                                   SizedBox(height: 10),
@@ -270,13 +271,13 @@ class RegisterScreen extends StatelessWidget {
                                     obscureText: controller.isObscureConfirmation.value,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return 'please enter your Password Confirmation';
+                                        return  AppLocalizations.of(context)!.passconfvalidation;
                                       }
                                       return null;
                                     },
 
                                     decoration: InputDecoration(
-                                      hintText: 'Enter Password Confirmation',
+                                      hintText:  AppLocalizations.of(context)!.enterpassconf,
                                       prefixIcon: Icon(Icons.password_outlined, color: Colors.grey,),
                                       suffixIcon: IconButton(icon: Icon(controller.isObscureConfirmation.value ? Icons.visibility_outlined
                                           :Icons.visibility_off_outlined,color: Colors.grey,),
@@ -310,7 +311,7 @@ class RegisterScreen extends StatelessWidget {
                                         ),
                                       ),
                                       child: Text(
-                                        'Sign UP',
+                                        AppLocalizations.of(context)!.signup,
                                         style: TextStyle(
                                           color: Theme.of(context).textTheme.bodyLarge?.color,
                                           fontSize: 16,

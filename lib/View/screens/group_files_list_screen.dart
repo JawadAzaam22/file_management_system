@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'dart:html' as html;
 
 import '../../Controller/group_files_list_controller.dart';
+import '../../l10n/app_localizations.dart';
 class GroupFilesList extends GetView<GroupFilesListController> {
   const GroupFilesList({super.key});
   void downloadFile() {
@@ -146,7 +147,7 @@ class GroupFilesList extends GetView<GroupFilesListController> {
                                     width: 5,
                                   ),
                                   Text(
-                                    "file name",
+                                    AppLocalizations.of(context)!.filename,
                                     style: GoogleFonts.openSans(
                                       color: Theme.of(context)
                                           .textTheme
@@ -162,7 +163,7 @@ class GroupFilesList extends GetView<GroupFilesListController> {
                                     width: 5,
                                   ),
                                   Text(
-                                    "  Owner  ",
+                                    AppLocalizations.of(context)!.owner,
                                     style: GoogleFonts.openSans(
                                       color: Theme.of(context)
                                           .textTheme
@@ -173,7 +174,7 @@ class GroupFilesList extends GetView<GroupFilesListController> {
                                 ],
                               ),
                               Text(
-                                "Last Modified",
+                                AppLocalizations.of(context)!.lastmodified,
                                 style: GoogleFonts.openSans(
                                   color: Theme.of(context)
                                       .textTheme
@@ -191,7 +192,9 @@ class GroupFilesList extends GetView<GroupFilesListController> {
                                 ),
                               ),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    controller.uploadFile();
+                                  },
                                   icon: Icon(
                                     Icons.add_to_drive_outlined,
                                   ))
@@ -286,11 +289,11 @@ class GroupFilesList extends GetView<GroupFilesListController> {
                                     ),
                                   ),
                                   PopupMenuButton<String>(
-                                      color: Colors.blueAccent,
+                                      color: Theme.of(context).primaryColor,
                                       icon: const Icon(
                                           Icons.menu_open_rounded),
                                       onSelected: (value) {
-                                        // هنا يمكنك إضافة منطق للتعامل مع الخيار المحدد
+
                                         handleMenuSelection(context, value);
                                       },
                                       itemBuilder: (BuildContext context) {

@@ -124,6 +124,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notificationScreen => 'Notifications';
 
   @override
+
   String get invitationScreen => 'Invitation';
 
   @override
@@ -152,4 +153,70 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get code => 'code';
+
+  String get groupsfiles => 'Group\'s Files';
+
+  @override
+  String get newfilesreq => 'New Files Request';
+
+  @override
+  String get myreserved => 'My Reserved Files';
+
+  @override
+  String get members => 'Members';
+
+  @override
+  String get invite => 'Invite';
+
+  @override
+  String get leavegroup => 'Leave Group';
+
+  @override
+  String get filename => 'File Name';
+
+  @override
+  String get owner => 'Owner';
+
+  @override
+  String get lastmodified => 'Last Modified';
+
+  @override
+  String get size => 'Size';
+
+  @override
+  String get download => 'Download';
+
+  @override
+  String get preversion => 'Previous Version';
+
+  @override
+  String get report => 'Report';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get alert => 'Alert';
+
+  @override
+  String get youwantdel => 'You Want Delete File?';
+
+  @override
+  String get uploadedby => 'Uploaded By:';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String get uploadedtime => 'Uploade Time:';
+
+  @override
+  String get accept => 'Accept:';
+
+  @override
+  String get reject => 'Reject';
+
+  @override
+  String get reservtime => 'Reservation Time:';
+
 }

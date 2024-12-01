@@ -1,6 +1,8 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:file_management_system/Bindings/groups_bindings.dart';
 
 import 'package:file_management_system/Bindings/invitations_bindings.dart';
+import 'package:file_management_system/View/screens/groups_screen.dart';
 import 'package:file_management_system/View/screens/invitations_screen.dart';
 
 import 'package:file_management_system/Bindings/about_us_bindings.dart';
@@ -138,7 +140,11 @@ class MyApp extends StatelessWidget {
                     binding: ForgetPasswordBindings(),
                   ),
 
-
+            GetPage(
+              name: "/groups",
+              page: () => GroupsScreen(),
+              binding: GroupsBindings(),
+            ),
 
             GetPage(
               name: "/aboutUs",

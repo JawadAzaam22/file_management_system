@@ -14,7 +14,7 @@ import '../widgets/custom_text.dart';
 
 class GroupsScreen extends GetView<GroupsController> {
    GroupsScreen({super.key});
-  final GroupsController controller = Get.put(GroupsController());
+ // final GroupsController controller = Get.find<GroupsController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +66,10 @@ class GroupsScreen extends GetView<GroupsController> {
 
             List.generate(controller.myGroups.length+1, (index) {
               return InkWell(
-                onTap: () => controller.goTo(index),
+                onTap: () {
+                  if(index==0){controller.goToCreatGroup();}
+                  else{controller.goToViewGroup(controller.myGroups[index-1].id!.toInt());}
+                },
                 child: Card(
                   color: Theme.of(context).colorScheme.primaryContainer,
                   child: index == 0
@@ -103,12 +106,15 @@ class GroupsScreen extends GetView<GroupsController> {
                mainAxisSpacing: 10,
                crossAxisSpacing: 10,
                children: List.generate(controller.otherGroups.length, (index) {
-                 return Card(
-                   color: Theme.of(context).colorScheme.primaryContainer,
-                   child: CustomText(
+                 return InkWell(
+                   onTap: () => controller.goToViewGroup(controller.otherGroups[index].id!.toInt()),
+                   child: Card(
+                     color: Theme.of(context).colorScheme.primaryContainer,
+                     child: CustomText(
 
-                     text:controller.otherGroups[index].groupName.toString(),
-                     alignment: Alignment.center,
+                       text:controller.otherGroups[index].groupName.toString(),
+                       alignment: Alignment.center,
+                     ),
                    ),
                  );
                }),

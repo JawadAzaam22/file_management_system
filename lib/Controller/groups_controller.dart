@@ -5,9 +5,9 @@ import '../Services/service.dart';
 
 class GroupsController extends GetxController {
   @override
-  void onInit() {
+  void onInit() async{
     service = Get.find<UserService>();
-    getGroups();
+    await getGroups();
     super.onInit();
   }
 
@@ -21,19 +21,12 @@ class GroupsController extends GetxController {
     Get.offAndToNamed("/create_groub");
   }
 
-  void goToViewGroup() {
-    Get.toNamed("/viewGroup");
+  void goToViewGroup(int groupId) {
+    Get.toNamed("/viewGroup",id: groupId);
   }
 
-  void goTo(int index) {
-    if(index==0){
+  void goToCreatGroup() {
       Get.toNamed("/create_groub");
-    }
-    else{
-      Get.toNamed("/viewGroup",arguments:index);
-    }
-
-
   }
 
   Future<void> getGroups() async {

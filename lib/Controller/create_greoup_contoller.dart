@@ -32,7 +32,7 @@ class CreateGroupController extends GetxController {
   late TextEditingController searchContoller;
 
   void navToHome() {
-    Get.offAndToNamed("/home");
+    Get.offAllNamed("/home");
   }
 
   void sendInvite(UserModel name) {
@@ -132,8 +132,8 @@ class CreateGroupController extends GetxController {
           },
           options: dio.Options(
             headers: {
-              "Authorization":
-              "Bearer 21|1TNHMBMAyG2vgEZ7MAsStz1oYjE51KQerDqcm3h589e6370a",
+              "Authorization":"Bearer ${service.token}"
+
             },
           ));
       print("creategroup");

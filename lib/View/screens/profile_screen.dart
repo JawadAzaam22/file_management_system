@@ -130,7 +130,7 @@ class ProfileScreen extends GetView<ProfileController> {
                     width: 200,
                     child: ElevatedButton(
                         onPressed: () {
-                          //
+                         //
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Theme.of(context).primaryColor,

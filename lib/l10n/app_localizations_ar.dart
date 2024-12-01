@@ -124,7 +124,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get notificationScreen => 'الإشعارات';
 
   @override
-
   String get invitationScreen => 'الدعوات';
 
   @override
@@ -154,6 +153,7 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get code => 'الرمز';
 
+  @override
   String get groupsfiles => 'ملفات المجموعة';
 
   @override
@@ -219,4 +219,9 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get reservtime => ':وقت الحجز';
 
+  @override
+  String get checkin => 'حجز';
+
+  @override
+  String get canselselect => 'إلغاء التحديد';
 }

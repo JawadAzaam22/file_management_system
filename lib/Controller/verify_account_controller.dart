@@ -12,9 +12,7 @@ class VerifyAccountController extends GetxController{
   void onInit() {
     service=Get.find<UserService>();
     otpController = TextEditingController();
-
     email =Get.arguments["email"];
-
     super.onInit();
   }
   late String email ;

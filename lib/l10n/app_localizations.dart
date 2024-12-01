@@ -328,6 +328,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Notifications'**
   String get notificationScreen;
+
+  /// No description provided for @invitationScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'Invitation'**
+  String get invitationScreen;
+
+  /// No description provided for @noinvitation.
+  ///
+  /// In en, this message translates to:
+  /// **'No invitations available.'**
+  String get noinvitation;
+
+  /// No description provided for @emailcode.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email to send code'**
+  String get emailcode;
+
+  /// No description provided for @codecheck.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the 6-digit that sent to you'**
+  String get codecheck;
+
+  /// No description provided for @newpassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a new password'**
+  String get newpassword;
+
+  /// No description provided for @sendcode.
+  ///
+  /// In en, this message translates to:
+  /// **'send code'**
+  String get sendcode;
+
+  /// No description provided for @check.
+  ///
+  /// In en, this message translates to:
+  /// **'check'**
+  String get check;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'confirm'**
+  String get confirm;
+
+  /// No description provided for @forgrtpasswordscreen.
+  ///
+  /// In en, this message translates to:
+  /// **'forget password'**
+  String get forgrtpasswordscreen;
+
+  /// No description provided for @code.
+  ///
+  /// In en, this message translates to:
+  /// **'code'**
+  String get code;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

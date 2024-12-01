@@ -1,3 +1,4 @@
+import 'package:file_management_system/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -48,7 +49,7 @@ class ResetPasswordScreen extends GetView<ResetPasswordController> {
                         children: [
                           Center(
                             child: Text(
-                              "Forget password",
+                              AppLocalizations.of(context)!.forgrtpasswordscreen,
                               style: TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.w300,
@@ -63,7 +64,7 @@ class ResetPasswordScreen extends GetView<ResetPasswordController> {
                           ),
                           Center(
                             child: Text(
-                              "Enter a new password",
+                              AppLocalizations.of(context)!.newpassword,
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w300,
@@ -78,7 +79,7 @@ class ResetPasswordScreen extends GetView<ResetPasswordController> {
                             children: [
                               SizedBox(height: 20),
                               Text(
-                                "Password:",
+                                AppLocalizations.of(context)!.password,
                                 style: TextStyle(color: Colors.white, fontSize: 14),
                               ),
                               SizedBox(height: 10),
@@ -87,13 +88,13 @@ class ResetPasswordScreen extends GetView<ResetPasswordController> {
                                 obscureText: controller.isObscure.value,
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return 'please enter your password';
+                                    return AppLocalizations.of(context)!.passvalidation;
                                   }
                                   return null;
                                 },
                                 style: TextStyle(color: Colors.black),
                                 decoration: InputDecoration(
-                                  hintText: 'Enter Password',
+                                  hintText: AppLocalizations.of(context)!.enterpassword,
                                   prefixIcon: Icon(Icons.password_outlined, color: Colors.grey,),
                                   suffixIcon: IconButton(icon: Icon(controller.isObscure.value ? Icons.visibility_outlined
                                       :Icons.visibility_off_outlined,color: Colors.grey,),
@@ -114,7 +115,7 @@ class ResetPasswordScreen extends GetView<ResetPasswordController> {
 
                               SizedBox(height: 10),
                               Text(
-                                "Password Confirmation:",
+                                AppLocalizations.of(context)!.passwordconf,
                                 style: TextStyle(color: Colors.white, fontSize: 14),
                               ),
                               SizedBox(height: 10),
@@ -123,13 +124,13 @@ class ResetPasswordScreen extends GetView<ResetPasswordController> {
                                 obscureText: controller.isObscureConfirmation.value,
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return 'please enter your Password Confirmation';
+                                    return AppLocalizations.of(context)!.passconfvalidation;
                                   }
                                   return null;
                                 },
                                 style: TextStyle(color: Colors.black),
                                 decoration: InputDecoration(
-                                  hintText: 'Enter Password Confirmation',
+                                  hintText: AppLocalizations.of(context)!.enterpassconf,
                                   prefixIcon: Icon(Icons.password_outlined, color: Colors.grey,),
                                   suffixIcon: IconButton(icon: Icon(controller.isObscureConfirmation.value ? Icons.visibility_outlined
                                       :Icons.visibility_off_outlined,color: Colors.grey,),
@@ -157,13 +158,13 @@ class ResetPasswordScreen extends GetView<ResetPasswordController> {
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor:
-                                    Theme.of(context).canvasColor,
+                                    Theme.of(context).primaryColor,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(7.11),
                                     ),
                                   ),
                                   child: Text(
-                                    'send code',
+                                    AppLocalizations.of(context)!.confirm,
                                     style: TextStyle(
                                       color: Theme.of(context)
                                           .textTheme

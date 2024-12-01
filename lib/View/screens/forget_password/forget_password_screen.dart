@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../Controller/forget_password/forget_password_controller.dart';
 import '../../../UI/color.dart';
+import '../../../l10n/app_localizations.dart';
 
 
 class ForgetPasswordScreen extends GetView<ForgetPasswordController> {
@@ -47,22 +48,20 @@ class ForgetPasswordScreen extends GetView<ForgetPasswordController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Center(
-                            child: Text(
-                              "Forget password",
+                            child:  Text(
+                              AppLocalizations.of(context)!.forgrtpasswordscreen,
                               style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.w300,
-                                color:
-                                    Theme.of(context).textTheme.bodyLarge?.color,
-                              ),
-                              textAlign: TextAlign.center,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w400,
+                                  color: Theme.of(context).textTheme.bodyLarge?.color),
+                                  textAlign: TextAlign.center,
                             ),
                           ),
                           SizedBox(
                             height: 10,
                           ),
                           Text(
-                            "Enter your email to send code",
+                            AppLocalizations.of(context)!.emailcode,
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w300,
@@ -76,7 +75,7 @@ class ForgetPasswordScreen extends GetView<ForgetPasswordController> {
                             children: [
                               SizedBox(height: 20),
                               Text(
-                                "Email:",
+                                AppLocalizations.of(context)!.email,
                                 style: TextStyle(
                                     color: Theme.of(context)
                                         .textTheme
@@ -90,12 +89,12 @@ class ForgetPasswordScreen extends GetView<ForgetPasswordController> {
                                 keyboardType: TextInputType.emailAddress,
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return 'please enter your email';
+                                    return AppLocalizations.of(context)!.emailvalidation;
                                   }
                                   return null;
                                 },
                                 decoration: InputDecoration(
-                                  hintText: 'Enter Your Email',
+                                  hintText: AppLocalizations.of(context)!.enteryouremail,
                                   prefixIcon: Icon(
                                     Icons.email_outlined,
                                     color: Colors.grey,
@@ -120,13 +119,13 @@ class ForgetPasswordScreen extends GetView<ForgetPasswordController> {
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor:
-                                        Theme.of(context).canvasColor,
+                                        Theme.of(context).primaryColor,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(7.11),
                                     ),
                                   ),
                                   child: Text(
-                                    'send code',
+                                    AppLocalizations.of(context)!.sendcode,
                                     style: TextStyle(
                                       color: Theme.of(context)
                                           .textTheme

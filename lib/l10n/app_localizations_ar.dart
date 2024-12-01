@@ -122,4 +122,34 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get notificationScreen => 'الإشعارات';
+
+  @override
+  String get invitationScreen => 'الدعوات';
+
+  @override
+  String get noinvitation => ' لا يوجد دعوات';
+
+  @override
+  String get emailcode => 'ادخل ايميلك لارسال الرمز';
+
+  @override
+  String get codecheck => 'ادخل رمز 6 خانات  المرسل اليك ';
+
+  @override
+  String get newpassword => ' ادخل كلمة السر جديدة ';
+
+  @override
+  String get sendcode => 'ارسل الرمز ';
+
+  @override
+  String get check => 'تحقق';
+
+  @override
+  String get confirm => 'تأكيد';
+
+  @override
+  String get forgrtpasswordscreen => 'كملة السر جديدة';
+
+  @override
+  String get code => 'الرمز';
 }

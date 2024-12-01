@@ -122,4 +122,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notificationScreen => 'Notifications';
+
+  @override
+  String get invitationScreen => 'Invitation';
+
+  @override
+  String get noinvitation => 'No invitations available.';
+
+  @override
+  String get emailcode => 'Enter your email to send code';
+
+  @override
+  String get codecheck => 'Enter the 6-digit that sent to you';
+
+  @override
+  String get newpassword => 'Enter a new password';
+
+  @override
+  String get sendcode => 'send code';
+
+  @override
+  String get check => 'check';
+
+  @override
+  String get confirm => 'confirm';
+
+  @override
+  String get forgrtpasswordscreen => 'forget password';
+
+  @override
+  String get code => 'code';
 }

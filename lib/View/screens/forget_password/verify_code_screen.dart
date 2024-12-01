@@ -1,3 +1,4 @@
+import 'package:file_management_system/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -50,7 +51,7 @@ class VerifyCodeScreen extends GetView<VerifyCodeController> {
                         children: [
                           Center(
                             child: Text(
-                              "Forget password",
+                              AppLocalizations.of(context)!.forgrtpasswordscreen,
                               style: TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.w300,
@@ -64,7 +65,7 @@ class VerifyCodeScreen extends GetView<VerifyCodeController> {
                             height: 10,
                           ),
                           Text(
-                            "Enter the 6-digit that sent to you",
+                            AppLocalizations.of(context)!.codecheck,
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w300,
@@ -78,7 +79,7 @@ class VerifyCodeScreen extends GetView<VerifyCodeController> {
                             children: [
                               SizedBox(height: 20),
                               Text(
-                                "code",
+                                AppLocalizations.of(context)!.code,
                                 style: TextStyle(
                                     color: Theme.of(context)
                                         .textTheme
@@ -117,13 +118,13 @@ class VerifyCodeScreen extends GetView<VerifyCodeController> {
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor:
-                                    Theme.of(context).canvasColor,
+                                    Theme.of(context).primaryColor,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(7.11),
                                     ),
                                   ),
                                   child: Text(
-                                    'verify',
+                                    AppLocalizations.of(context)!.check,
                                     style: TextStyle(
                                       color: Theme.of(context)
                                           .textTheme

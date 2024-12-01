@@ -62,7 +62,9 @@ late String email ;
             backgroundColor: Colors.green,
             colorText: Colors.white,
           );
-          navTologin();
+          service.token = r.data['data']['token'];
+          print(service.token.toString());
+          Get.offAndToNamed("/home");
 
         } else {
           Get.snackbar(

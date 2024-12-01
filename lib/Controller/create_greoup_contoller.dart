@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart' as dio;
 import 'package:dio/dio.dart';
 import 'package:file_management_system/Model/user_model.dart';
@@ -16,7 +18,7 @@ class CreateGroupController extends GetxController {
     groubNameController = TextEditingController();
     super.onInit();
   }
-
+  Timer? _debounce;
   var formKey = GlobalKey<FormState>();
 
   late final UserService service;
@@ -85,21 +87,9 @@ class CreateGroupController extends GetxController {
       print(searchResults.length);
       print(searches.length);
       if (r.statusCode == 200) {
-        Get.snackbar(
-          "نجاح",
-          "تم الارسال  بنجاح",
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.green,
-          colorText: Colors.white,
-        );
+        print("s");
       } else {
-        Get.snackbar(
-          "خطأ",
-          "خطأ أثناء كتابة email",
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
+       print("a");
       }
     } catch (e) {
       Get.snackbar(
@@ -167,30 +157,19 @@ class CreateGroupController extends GetxController {
     } }
   }
 
-// void search() {
-//   if (query.isEmpty) {
-//     searchResults.clear();
-//     return;
-//   }
-//
-//   isLoading.value = true;
-//
-//
-//   List<String> dummyData = [
-//     "John Doe",
-//     "Jane Smith",
-//     "Michael Johnson",
-//     "Emily Davis",
-//     "Chris Brown",
-//     "Jessica Wilson",
-//     "Daniel Martinez"
-//   ];
-//
-//
-//   searchResults.value = dummyData
-//       .where((name) => name.toLowerCase().contains(query.toLowerCase()))
-//       .toList();
-//
-//   isLoading.value = false;
-// }
+  void onSearchChanged(value) {
+
+    if (_debounce?.isActive ?? false) _debounce!.cancel();
+
+
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+      search();
+    });
+  }
+  @override
+  void dispose() {
+    _debounce?.cancel();
+
+  }
+
 }

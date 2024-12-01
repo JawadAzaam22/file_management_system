@@ -71,7 +71,9 @@ class CreateGroubScreen extends GetView<CreateGroupController> {
                         ),
                         TextFormField(
                           controller: controller.searchContoller,
-                          onChanged: (value) => controller.searchContoller,
+                          onChanged: (value){
+                           controller.onSearchChanged(value);
+                          },
                           decoration: InputDecoration(
                             hintText: 'Search',
                             hintStyle: TextStyle(color: Colors.white70),

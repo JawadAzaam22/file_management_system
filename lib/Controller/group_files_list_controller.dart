@@ -1,4 +1,8 @@
+
 import 'package:file_management_system/Model/groups_with_files_model.dart';
+
+import 'package:dio/dio.dart';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
@@ -6,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dio/dio.dart' as dio;
 import '../Services/service.dart';
 import '../UI/constants.dart';
+
 
 class GroupFilesListController extends GetxController {
   @override
@@ -45,8 +50,6 @@ class GroupFilesListController extends GetxController {
     dio.Dio d = dio.Dio();
 
     try {
-
-
 
       String fileName = _file!.name;
       dio.FormData formData = dio.FormData.fromMap({
@@ -94,6 +97,7 @@ class GroupFilesListController extends GetxController {
 
 
 
+
   RxList<Files>files=RxList([]);
   Future<void> getFiles() async {
     dio.Dio d = dio.Dio();
@@ -126,6 +130,5 @@ class GroupFilesListController extends GetxController {
       Get.snackbar("Error", e.response?.data["message"] ?? e.message);
     }
   }
-
 
 }

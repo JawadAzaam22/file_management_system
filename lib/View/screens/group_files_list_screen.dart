@@ -1,4 +1,5 @@
 import 'package:file_management_system/Controller/view_group_controller.dart';
+import 'package:file_management_system/Model/groups_with_files_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -46,7 +47,9 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                         ? Container(
                             width: 160,
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                controller.checkIn();
+                              },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor:
                                     Theme.of(context).primaryColor,
@@ -86,6 +89,7 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                             child: ElevatedButton(
                               onPressed: () {
                                 controller.fileIsTaped.value = false;
+                                controller.update();
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor:
@@ -310,7 +314,7 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                                                Icons.menu_open_rounded),
                                            onSelected: (value) {
 
-                                             handleMenuSelection(context, value);
+                                             handleMenuSelection(context, value,e);
                                            },
                                            itemBuilder: (BuildContext context) {
                                              List<IconData> iconsList = [
@@ -380,6 +384,7 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                                                      ],
                                                    )
                                                ),
+
                                                PopupMenuItem<String>(
                                                    value: 'Delete',
                                                    child: Row(
@@ -415,209 +420,6 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                ),),
 
 
-
-
-              // SizedBox(
-              //   height: 10,
-              // ),
-              // InkWell(
-              //   onLongPress: () {
-              //     controller.fileIsTaped.value = true;
-              //   },
-              //   child: Container(
-              //       height: 40,
-              //       color: Theme.of(context).primaryColor,
-              //       child: Padding(
-              //         padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              //         child: controller.fileIsTaped.value
-              //             ? Row(
-              //                 children: [
-              //                   Checkbox(value: false, onChanged: (val) {}),
-              //                   Expanded(
-              //                     child: Row(
-              //                       mainAxisAlignment:
-              //                           MainAxisAlignment.spaceBetween,
-              //                       children: [
-              //                         Row(
-              //                           children: [
-              //                             Icon(
-              //                               CupertinoIcons.folder_fill,
-              //                               color: Colors.blueAccent,
-              //                             ),
-              //                             SizedBox(
-              //                               width: 5,
-              //                             ),
-              //                             Text(
-              //                               "file name",
-              //                               style: GoogleFonts.openSans(
-              //                                 color: Theme.of(context)
-              //                                     .textTheme
-              //                                     .bodyMedium
-              //                                     ?.color,
-              //                               ),
-              //                             ),
-              //                           ],
-              //                         ),
-              //                         Row(
-              //                           children: [
-              //                             CircleAvatar(
-              //                               radius: 10,
-              //                             ),
-              //                             SizedBox(
-              //                               width: 5,
-              //                             ),
-              //                             Text(
-              //                               "Owner",
-              //                               style: GoogleFonts.openSans(
-              //                                 color: Theme.of(context)
-              //                                     .textTheme
-              //                                     .bodyMedium
-              //                                     ?.color,
-              //                               ),
-              //                             )
-              //                           ],
-              //                         ),
-              //                         Text(
-              //                           "Last Modified",
-              //                           style: GoogleFonts.openSans(
-              //                             color: Theme.of(context)
-              //                                 .textTheme
-              //                                 .bodyMedium
-              //                                 ?.color,
-              //                           ),
-              //                         ),
-              //                         Text(
-              //                           "1 GB",
-              //                           style: GoogleFonts.openSans(
-              //                             color: Theme.of(context)
-              //                                 .textTheme
-              //                                 .bodyMedium
-              //                                 ?.color,
-              //                           ),
-              //                         ),
-              //                         PopupMenuButton<String>(
-              //                           color: Colors.blueAccent,
-              //                           icon: const Icon(
-              //                               Icons.menu_open_rounded),
-              //                           onSelected: (value) {
-              //                             // هنا يمكنك إضافة منطق للتعامل مع الخيار المحدد
-              //                             handleMenuSelection(
-              //                                 context, value);
-              //                           },
-              //                           itemBuilder:
-              //                               (BuildContext context) {
-              //                             return {
-              //                               'Option 1',
-              //                               'Option 2',
-              //                               'Option 3'
-              //                             }.map((String choice) {
-              //                               return PopupMenuItem<String>(
-              //                                 value: choice,
-              //                                 child: Text(choice),
-              //                               );
-              //                             }).toList();
-              //                           },
-              //                         ),
-              //                       ],
-              //                     ),
-              //                   ),
-              //                 ],
-              //               )
-              //             : Row(
-              //                 children: [
-              //                   Expanded(
-              //                     child: Row(
-              //                       mainAxisAlignment:
-              //                           MainAxisAlignment.spaceBetween,
-              //                       children: [
-              //                         Row(
-              //                           children: [
-              //                             Icon(
-              //                               CupertinoIcons.folder_fill,
-              //                               color: Colors.blueAccent,
-              //                             ),
-              //                             SizedBox(
-              //                               width: 5,
-              //                             ),
-              //                             Text(
-              //                               "file name",
-              //                               style: GoogleFonts.openSans(
-              //                                 color: Theme.of(context)
-              //                                     .textTheme
-              //                                     .bodyMedium
-              //                                     ?.color,
-              //                               ),
-              //                             ),
-              //                           ],
-              //                         ),
-              //                         Row(
-              //                           children: [
-              //                             CircleAvatar(
-              //                               radius: 10,
-              //                             ),
-              //                             SizedBox(
-              //                               width: 5,
-              //                             ),
-              //                             Text(
-              //                               "Owner",
-              //                               style: GoogleFonts.openSans(
-              //                                 color: Theme.of(context)
-              //                                     .textTheme
-              //                                     .bodyMedium
-              //                                     ?.color,
-              //                               ),
-              //                             )
-              //                           ],
-              //                         ),
-              //                         Text(
-              //                           "Last Modified",
-              //                           style: GoogleFonts.openSans(
-              //                             color: Theme.of(context)
-              //                                 .textTheme
-              //                                 .bodyMedium
-              //                                 ?.color,
-              //                           ),
-              //                         ),
-              //                         Text(
-              //                           "1 GB",
-              //                           style: GoogleFonts.openSans(
-              //                             color: Theme.of(context)
-              //                                 .textTheme
-              //                                 .bodyMedium
-              //                                 ?.color,
-              //                           ),
-              //                         ),
-              //                         PopupMenuButton<String>(
-              //                           color: Colors.blueAccent,
-              //                           icon: const Icon(
-              //                               Icons.menu_open_rounded),
-              //                           onSelected: (value) {
-              //                             // هنا يمكنك إضافة منطق للتعامل مع الخيار المحدد
-              //                             handleMenuSelection(
-              //                                 context, value);
-              //                           },
-              //                           itemBuilder:
-              //                               (BuildContext context) {
-              //                             return {
-              //                               'Option 1',
-              //                               'Option 2',
-              //                               'Option 3'
-              //                             }.map((String choice) {
-              //                               return PopupMenuItem<String>(
-              //                                 value: choice,
-              //                                 child: Text(choice),
-              //                               );
-              //                             }).toList();
-              //                           },
-              //                         ),
-              //                       ],
-              //                     ),
-              //                   ),
-              //                 ],
-              //               ),
-              //       )),
-              // ),
-
             ],
           ),
         ),
@@ -625,14 +427,14 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
     ));
   }
 
-  void handleMenuSelection(BuildContext context, String value) {
+  void handleMenuSelection(BuildContext context, String value,Files file) {
     switch (value) {
       case 'Download':
         downloadFile();
         break;
       case 'Previous Version':
        //nav to pre
-        controller.navToPrevious();
+        controller.navToPrevious(file.id!);
         break;
       case 'Report':
 

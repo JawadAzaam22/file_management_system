@@ -68,8 +68,12 @@ class ViewGroupController extends GetxController {
 
 
   RxBool fileIsTaped=RxBool(false);
-  void navToPrevious(){
-    Get.toNamed("/preVersion");
+  void navToPrevious(int fileID){
+    Get.toNamed("/preVersion",
+    arguments: {
+      "fileID":fileID,
+    }
+    );
   }
   void navToReport(){
     Get.toNamed("/report");
@@ -148,6 +152,7 @@ class ViewGroupController extends GetxController {
 
 
   RxList<Files>files=RxList([]);
+  Owner owner=Owner();
   Future<void> getFiles() async {
     dio.Dio d = dio.Dio();
 
@@ -168,6 +173,8 @@ class ViewGroupController extends GetxController {
       List<dynamic> temp = r.data["data"]["files"];
       if (r.statusCode == 200) {
         files.addAll(temp.map((e) => Files.fromJson(e)));
+        owner = Owner.fromJson(r.data["data"]["owner"]);
+        print(owner.id);
         print(files.length);
         print(files[1].versions?.length);
         print(files[0].versions);
@@ -184,28 +191,34 @@ class ViewGroupController extends GetxController {
     }
   }
 
-  Future<void> checkIn(int index, int? id) async {
+  Future<void> checkIn() async {
     dio.Dio d = dio.Dio();
-
+    _isLoading.value = true;
+    update();
     try {
       dio.Response r =
-      await d.patch("$baseURL/api/v1/invitation/reject/$id",
+      await d.patch("$baseURL/api/v1/file/lock",
         options: dio.Options(
           headers: {
             "Authorization": "Bearer ${service.token}",
           },
         ),
+        data: {
+          "file_ids" :checkInListIds,
+        }
       );
 
       if (r.statusCode == 200) {
-
+        Get.snackbar("Error", r.data["message"] ?? "Success");
 
       } else {
         Get.snackbar("Error", r.data["message"] ?? "An error occurred");
       }
-      _isLoading.value = false;
+      _isLoading.value = true;
+      update();
     } on dio.DioException catch (e) {
-      _isLoading.value = false;
+      _isLoading.value = true;
+      update();
       print("eeeeeeeeeeeeeeeee");
       Get.snackbar("Error", e.response?.data["message"] ?? e.message);
     }

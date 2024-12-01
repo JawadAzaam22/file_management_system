@@ -72,6 +72,7 @@ class LoginController extends GetxController {
         _isLoading.value = false;
         print("eeeeeeeeeeeeeeeee");
         Get.snackbar("Error", e.response?.data["message"] ?? e.message);
-      }}
+      }
+    }
   }
 }

@@ -122,4 +122,70 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get notificationScreen => 'الإشعارات';
+
+  @override
+  String get groupsfiles => 'ملفات المجموعة';
+
+  @override
+  String get newfilesreq => 'طلبات اضافة ملف ';
+
+  @override
+  String get myreserved => 'الملفات المحجوزة';
+
+  @override
+  String get members => 'الأعضاء';
+
+  @override
+  String get invite => 'دعوة';
+
+  @override
+  String get leavegroup => 'مغادرة المجموعة';
+
+  @override
+  String get filename => 'اسم الملف';
+
+  @override
+  String get owner => 'المالك';
+
+  @override
+  String get lastmodified => 'اخر تعديل';
+
+  @override
+  String get size => 'الحجم';
+
+  @override
+  String get download => 'تنزيل';
+
+  @override
+  String get preversion => 'الإصدارات السابقة';
+
+  @override
+  String get report => 'التقرير';
+
+  @override
+  String get delete => 'حذف';
+
+  @override
+  String get alert => 'تنبيه';
+
+  @override
+  String get youwantdel => 'هل تريد حذف الملف؟';
+
+  @override
+  String get uploadedby => ':مرفوع من قبل';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String get uploadedtime => ':تاريخ الرفع';
+
+  @override
+  String get accept => 'قبول:';
+
+  @override
+  String get reject => 'رفض';
+
+  @override
+  String get reservtime => ':وقت الحجز';
 }

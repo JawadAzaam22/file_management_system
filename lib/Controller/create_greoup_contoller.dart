@@ -133,7 +133,7 @@ class CreateGroupController extends GetxController {
           options: dio.Options(
             headers: {
               "Authorization":
-              "Bearer 21|1TNHMBMAyG2vgEZ7MAsStz1oYjE51KQerDqcm3h589e6370a",
+              "Bearer ${service.token}",
             },
           ));
       print("creategroup");

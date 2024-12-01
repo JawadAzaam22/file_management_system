@@ -104,6 +104,7 @@ Future<void>pick()async{
     webImage=f;
     update();
     picked=File("a");
+    update();
   }else {
     print("no select");
   }
@@ -116,18 +117,18 @@ Future<void>pick()async{
       try {
 
 
-        // if (webImage == null) { // تحقق من وجود الصورة
-        //   Get.snackbar("Error", "Please select an image.");
-        //   return;
-        // }
+        if (picked == null) {
+          Get.snackbar("Error", "Please select an image.");
+          return;
+        }
 
-        // إعداد بيانات النموذج
+
         dio.FormData formData = dio.FormData.fromMap({
 
 
         "image": dio.MultipartFile.fromBytes(
-        webImage, // استخدم بيانات الصورة هنا
-        filename: "image_path.jpg", // اسم الملف (يمكن تغييره حسب الحاجة)
+        webImage,
+        filename: "image_path.jpg",
         ),
           "name": nameController.text,
           "username": userNameController.text,
@@ -138,12 +139,12 @@ Future<void>pick()async{
 
         _isLoading.value = true;
 
-        // إرسال الطلب
+
         dio.Response r = await d.post("$baseURL/api/v1/auth/register", data: formData
 
         );
 
-        // تحقق من حالة الاستجابة
+
         if (r.statusCode == 200) {
           service.currentUser = UserModel.fromJson(r.data["data"]);
           Get.offAndToNamed("/verify_account", arguments: {
@@ -152,21 +153,15 @@ Future<void>pick()async{
         } else {
           Get.snackbar("Error", r.data["message"] ?? "An error occurred");
         }
-
+        _isLoading.value = false;
       } on dio.DioException catch (e) {
-        print("Dio Exception: ${e.response?.data}");
         _isLoading.value = false;
+        print("eeeeeeeeeeeeeeeee");
         Get.snackbar("Error", e.response?.data["message"] ?? e.message);
-        print( e.message);
-      } catch (e) {
-        print("General Exception: $e");
-        _isLoading.value = false;
-        Get.snackbar("Error", "An unexpected error occurred.");
-      } finally {
-        _isLoading.value = false; // تأكد من إيقاف التحميل في النهاية
       }
     }
   }
+
 
 
 

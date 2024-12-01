@@ -12,10 +12,10 @@ class VerifyAccountController extends GetxController{
   void onInit() {
     service=Get.find<UserService>();
     otpController = TextEditingController();
-    // email =Get.arguments["email"];
+     email =Get.arguments["email"];
     super.onInit();
   }
-  late RxnString email ;
+  late String email ;
   var formKey=GlobalKey<FormState>();
   final RxBool _isLoading = RxBool(false);
   late final UserService service;

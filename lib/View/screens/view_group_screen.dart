@@ -34,7 +34,7 @@ class ViewGroupScreen extends GetView<ViewGroupController> {
                         backgroundColor: Colors.transparent,
                         title: const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20.0),
-                          child: Text('data analyses'),
+                          child: Text("Group name"),
                         ),
                         leading: IconButton(
                           icon: Icon(Icons.menu),

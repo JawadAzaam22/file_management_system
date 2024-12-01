@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../Controller/pre_version_controller.dart';
 import '../../UI/color.dart';
+import '../../l10n/app_localizations.dart';
 
 
 class PreVersionScreen extends GetView<PreVersionController> {
@@ -64,7 +65,7 @@ class PreVersionScreen extends GetView<PreVersionController> {
                                   width: 5,
                                 ),
                                 Text(
-                                  "Owner",
+                                  AppLocalizations.of(context)!.owner,
                                   style: GoogleFonts.openSans(
                                     color: Theme.of(context)
                                         .textTheme
@@ -75,7 +76,7 @@ class PreVersionScreen extends GetView<PreVersionController> {
                               ],
                             ),
                             Text(
-                              "Last Modified",
+                              AppLocalizations.of(context)!.lastmodified,
                               style: GoogleFonts.openSans(
                                 color: Theme.of(context)
                                     .textTheme
@@ -84,7 +85,7 @@ class PreVersionScreen extends GetView<PreVersionController> {
                               ),
                             ),
                             Text(
-                              "Size",
+                              AppLocalizations.of(context)!.size,
                               style: GoogleFonts.openSans(
                                 color: Theme.of(context)
                                     .textTheme

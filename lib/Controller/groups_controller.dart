@@ -22,7 +22,11 @@ class GroupsController extends GetxController {
   }
 
   void goToViewGroup(int groupId) {
-    Get.toNamed("/viewGroup",id: groupId);
+    Get.toNamed("/viewGroup",
+        arguments: {
+          "id": groupId
+        },
+        );
   }
 
   void goToCreatGroup() {

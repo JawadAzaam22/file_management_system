@@ -1,3 +1,4 @@
+import 'package:file_management_system/Model/groups_with_files_model.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
@@ -8,8 +9,9 @@ import '../UI/constants.dart';
 
 class GroupFilesListController extends GetxController {
   @override
-  void onInit() {
+  void onInit() async{
     service=Get.find();
+    await getFiles();
     super.onInit();
   }
   RxBool fileIsTaped=RxBool(false);
@@ -89,5 +91,41 @@ class GroupFilesListController extends GetxController {
     }
 
   }
+
+
+
+  RxList<Files>files=RxList([]);
+  Future<void> getFiles() async {
+    dio.Dio d = dio.Dio();
+
+
+    _isLoading.value = true;
+    try {
+      dio.Response r = await d.get(
+          "$baseURL/api/v1/group/files/${1}",
+          options: dio.Options(
+            headers: {
+              "Authorization": "Bearer ${service.token}",
+            },
+          ));
+
+
+
+      List<dynamic> temp = r.data["data"]["files"];
+      if (r.statusCode == 200) {
+        files.addAll(temp.map((e) => Files.fromJson(e)));
+        print(files.length);
+        print(files[1].versions?.length);
+      }  else {
+        Get.snackbar("Error", r.data["message"] ?? "An error occurred");
+      }
+      _isLoading.value = false;
+    } on dio.DioException catch (e) {
+      _isLoading.value = false;
+      print("eeeeeeeeeeeeeeeee");
+      Get.snackbar("Error", e.response?.data["message"] ?? e.message);
+    }
+  }
+
 
 }

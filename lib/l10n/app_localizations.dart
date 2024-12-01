@@ -329,7 +329,6 @@ abstract class AppLocalizations {
   /// **'Notifications'**
   String get notificationScreen;
 
-
   /// No description provided for @invitationScreen.
   ///
   /// In en, this message translates to:
@@ -435,7 +434,7 @@ abstract class AppLocalizations {
   /// No description provided for @owner.
   ///
   /// In en, this message translates to:
-  /// **'Owner'**
+  /// **'  Owner  '**
   String get owner;
 
   /// No description provided for @lastmodified.
@@ -522,6 +521,17 @@ abstract class AppLocalizations {
   /// **'Reservation Time:'**
   String get reservtime;
 
+  /// No description provided for @checkin.
+  ///
+  /// In en, this message translates to:
+  /// **'Check In'**
+  String get checkin;
+
+  /// No description provided for @canselselect.
+  ///
+  /// In en, this message translates to:
+  /// **'Cansel Select'**
+  String get canselselect;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

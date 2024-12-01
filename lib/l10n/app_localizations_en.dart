@@ -124,7 +124,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notificationScreen => 'Notifications';
 
   @override
-
   String get invitationScreen => 'Invitation';
 
   @override
@@ -154,6 +153,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get code => 'code';
 
+  @override
   String get groupsfiles => 'Group\'s Files';
 
   @override
@@ -175,7 +175,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get filename => 'File Name';
 
   @override
-  String get owner => 'Owner';
+  String get owner => '  Owner  ';
 
   @override
   String get lastmodified => 'Last Modified';
@@ -219,4 +219,9 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get reservtime => 'Reservation Time:';
 
+  @override
+  String get checkin => 'Check In';
+
+  @override
+  String get canselselect => 'Cansel Select';
 }

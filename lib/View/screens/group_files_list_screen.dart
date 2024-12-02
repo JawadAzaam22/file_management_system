@@ -435,10 +435,12 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
     ));
   }
 
+
   void handleMenuSelection(BuildContext context, String value,Files file) {
+
     switch (value) {
       case 'Download':
-        downloadFile();
+        controller.downloadFile(file.name.toString(),file.versions![0].id!.toInt());
         break;
       case 'Previous Version':
        print(file.id!);

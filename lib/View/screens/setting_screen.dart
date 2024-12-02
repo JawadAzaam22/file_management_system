@@ -5,9 +5,9 @@ import '../../Controller/setting_controller.dart';
 import '../../l10n/app_localizations.dart';
 import '../widgets/custom_text.dart';
 
-class SettingScreen extends StatelessWidget {
+class SettingScreen extends GetView<SettingController> {
   SettingScreen({super.key});
-  SettingController settingController = Get.put(SettingController());
+ // SettingController settingController = Get.put(SettingController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +36,7 @@ class SettingScreen extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: InkWell(
                   onTap: () {
-                    settingController.goToProfile();
+                    controller.goToProfile();
                   },
                   child: Container(
                     width: 800,
@@ -76,7 +76,7 @@ class SettingScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "deemh alaisame",
+                                controller.userModel.name.toString(),
                                 style: TextStyle(
                                     fontSize: 30,
                                     fontWeight: FontWeight.bold,
@@ -89,7 +89,7 @@ class SettingScreen extends StatelessWidget {
                                 // mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
                                   CustomText(
-                                    text: "deemh",
+                                    text: controller.userModel.username.toString(),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(15),
@@ -100,7 +100,7 @@ class SettingScreen extends StatelessWidget {
                                     ),
                                   ),
                                   CustomText(
-                                    text: "deemhalaisame@gmail.com",
+                                    text: controller.userModel.email.toString(),
                                   )
                                 ],
                               )
@@ -136,7 +136,7 @@ class SettingScreen extends StatelessWidget {
                           ]),
                       child: PopupMenuButton<String>(
                         onSelected: (String value) {
-                          settingController.changeLanguage(value);
+                          controller.changeLanguage(value);
                         },
                         child: Row(
                           children: [
@@ -184,9 +184,9 @@ class SettingScreen extends StatelessWidget {
                             ),
                           ]),
                       child: PopupMenuButton<bool>(
-                        initialValue: settingController.isDarkMode,
+                        initialValue: controller.isDarkMode,
                         onSelected: (bool value) {
-                          settingController.isDarkMode = value;
+                          controller.isDarkMode = value;
                           if (value) {
                             AdaptiveTheme.of(context).setDark();
                           } else {
@@ -231,7 +231,7 @@ class SettingScreen extends StatelessWidget {
                       width: 200,
                       child: ElevatedButton(
                           onPressed: () {
-                            settingController.goToAboutUs();
+                            controller.goToAboutUs();
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Theme.of(context).primaryColor,

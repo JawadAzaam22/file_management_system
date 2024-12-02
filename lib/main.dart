@@ -1,13 +1,10 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:file_management_system/Bindings/groups_bindings.dart';
-
 import 'package:file_management_system/Bindings/invitations_bindings.dart';
 import 'package:file_management_system/View/screens/groups_screen.dart';
 import 'package:file_management_system/View/screens/invitations_screen.dart';
-
 import 'package:file_management_system/Bindings/about_us_bindings.dart';
 import 'package:file_management_system/View/screens/about_us_screen.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -24,11 +21,8 @@ import 'Bindings/profile_bindings.dart';
 import 'Bindings/register_bindings.dart';
 import 'Bindings/report_bindings.dart';
 import 'Bindings/splash_bindings.dart';
-
 import 'Bindings/verify_account_bindings.dart';
-
 import 'Bindings/view_group_bindings.dart';
-
 import 'UI/color.dart';
 import 'View/screens/create_groub_screen.dart';
 import 'View/screens/forget_password/forget_password_screen.dart';
@@ -41,11 +35,8 @@ import 'View/screens/profile_screen.dart';
 import 'View/screens/register_screen.dart';
 import 'View/screens/report_screen.dart';
 import 'View/screens/splash_screen.dart';
-
 import 'View/screens/verify_account_screen.dart';
-
 import 'View/screens/view_group_screen.dart';
-
 import 'l10n/app_localizations.dart';
 
 void main() async {
@@ -110,60 +101,55 @@ class MyApp extends StatelessWidget {
               binding: ProfileBindings(),
             ),
             GetPage(
-                    name: "/create_groub",
-                    page: () =>  CreateGroubScreen(),
-                    binding: CreateGroubBindings(),
-                  ),
-                  GetPage(
-                    name: "/report",
-                    page: () =>  ExportImportReportsScreen(),
-                    binding: ReportBindings(),
-                  ),
-                  GetPage(
-                    name: "/verify",
-                    page: () => const VerifyCodeScreen(),
-                    binding: VerifyCodeBindings(),
-                  ),
-                  GetPage(
-                    name: "/reset_password",
-                    page: () => const ResetPasswordScreen(),
-                    binding: ResetPasswordBindings(),
-                  ),
-                  GetPage(
-                    name: "/verify_account",
-                    page: () => const VerifyAccountScreen(),
-                    binding: VerifyAccountBindings(),
-                  ),
-                  GetPage(
-                    name: "/forget_password",
-                    page: () => const ForgetPasswordScreen(),
-                    binding: ForgetPasswordBindings(),
-                  ),
-
+              name: "/create_groub",
+              page: () => CreateGroubScreen(),
+              binding: CreateGroubBindings(),
+            ),
+            GetPage(
+              name: "/report",
+              page: () => ExportImportReportsScreen(),
+              binding: ReportBindings(),
+            ),
+            GetPage(
+              name: "/verify",
+              page: () => const VerifyCodeScreen(),
+              binding: VerifyCodeBindings(),
+            ),
+            GetPage(
+              name: "/reset_password",
+              page: () => const ResetPasswordScreen(),
+              binding: ResetPasswordBindings(),
+            ),
+            GetPage(
+              name: "/verify_account",
+              page: () => const VerifyAccountScreen(),
+              binding: VerifyAccountBindings(),
+            ),
+            GetPage(
+              name: "/forget_password",
+              page: () => const ForgetPasswordScreen(),
+              binding: ForgetPasswordBindings(),
+            ),
             GetPage(
               name: "/groups",
               page: () => GroupsScreen(),
               binding: GroupsBindings(),
             ),
-
             GetPage(
               name: "/aboutUs",
               page: () => AboutUsScreen(),
               binding: AboutUsBindings(),
             ),
-
-
             GetPage(
               name: "/viewGroup",
-              page: () =>  ViewGroupScreen(),
+              page: () => ViewGroupScreen(),
               binding: ViewGroupBindings(),
             ),
             GetPage(
               name: "/preVersion",
-              page: () =>  const PreVersionScreen(),
+              page: () => const PreVersionScreen(),
               binding: PreVersionBindings(),
             ),
-
           ]),
     );
   }

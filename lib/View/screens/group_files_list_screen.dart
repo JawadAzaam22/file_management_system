@@ -43,12 +43,16 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    controller.fileIsTaped.value
+                    controller.fileIsTaped.value&& controller.checkInListIds.isNotEmpty
                         ? Container(
                             width: 160,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                controller.checkIn();
+                            child:
+
+                            ElevatedButton(
+                              onPressed: () async{
+                               await controller.checkIn();
+
+
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor:
@@ -83,13 +87,14 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                     SizedBox(
                       width: 10,
                     ),
-                    controller.fileIsTaped.value
+                    controller.fileIsTaped.value && controller.checkInListIds.isNotEmpty
                         ? Container(
                             width: 160,
                             child: ElevatedButton(
                               onPressed: () {
                                 controller.fileIsTaped.value = false;
                                 controller.files.assignAll(controller.files1);
+                                controller.checkInListIds=[];
                                 controller.update();
                               },
                               style: ElevatedButton.styleFrom(
@@ -220,6 +225,7 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
               SizedBox(
                 height: 10,
               ),
+
                ... controller.files.map((e)=>
 
                controller.isLoading?Center(child: CircularProgressIndicator(),):
@@ -240,15 +246,15 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                              child: Row(
                                children: [
                                  //شرط انو محجوز
-                                 controller.fileIsTaped.value && controller.getStatus(e)==true
+                                 controller.fileIsTaped.value && e.status==1
                                      ?
 
                                  Checkbox(
-                                     value:!e.status!, onChanged: (val) {
+                                     value:!e.statusBool!, onChanged: (val) {
 
-                                   e.status=!val!;
+                                   e.statusBool=!val!;
                                    controller.update();
-                                   controller.checkInListIdsFunc(e.status!,e.id!);
+                                   controller.checkInListIdsFunc(val,e.id!);
                                    controller.update();
 
                                    print(controller.checkInListIds);

@@ -21,7 +21,7 @@ class ViewGroupController extends GetxController {
     groupID =Get.arguments["id"];
     groupData =Get.arguments["groupData"];
     service=Get.find();
-    await getFiles();
+    await getFiles(groupID);
 
        super.onInit();
   }
@@ -33,13 +33,32 @@ class ViewGroupController extends GetxController {
  checkInListIdsFunc(bool val,int fileId){
    print(checkInListIds);
     if (val){
+      int g=0;
+      for(int i =0;i<checkInListIds.length;i++)
+      {
 
-      checkInListIds.add(fileId);
+        if(fileId==checkInListIds[i]){
+          g=g+1;
+
+        }
+      }
+      if(g==0){
+        checkInListIds.add(fileId);
+        update();
+      }
+
       update();
       print(checkInListIds);
     } else {
-      checkInListIds.remove(fileId);
-      update();
+      for(int i =0;i<checkInListIds.length;i++)
+        {
+          if(fileId==checkInListIds[i]){
+            checkInListIds.remove(fileId);
+            update();
+          }
+        }
+
+
 
       print(checkInListIds);
     }
@@ -143,6 +162,10 @@ class ViewGroupController extends GetxController {
 
       if (r.statusCode == 200) {
         Get.snackbar("Success", r.data["message"]);
+        files.value=[];
+        files1.value=[];
+        await getFiles(groupID);
+        update();
       } else if (r.statusCode == 400) {
         Get.snackbar("Error","You cannot upload afile with this extension");
       }
@@ -156,7 +179,7 @@ class ViewGroupController extends GetxController {
   RxList<Files>files1=RxList([]);
   Owner owner=Owner();
 
-  Future<void> getFiles() async {
+  Future<void> getFiles(int groupID) async {
     dio.Dio d = dio.Dio();
 
     _isLoading.value = true;
@@ -196,23 +219,15 @@ class ViewGroupController extends GetxController {
     }
   }
 
-  bool getStatus(Files f){
-    for(int i=0;i<files1.length;i++){
-
-
-         if( f==files1[i]){
-           return files1[i].status!;
-         }
-
-    }
-    return false;
-  }
 
 
 
+  final RxBool _isLoadingCheck = RxBool(false);
+
+  bool get isLoadingCheck => _isLoadingCheck.value;
   Future<void> checkIn() async {
     dio.Dio d = dio.Dio();
-    _isLoading.value = true;
+    _isLoadingCheck.value = true;
     update();
     try {
       dio.Response r =
@@ -229,15 +244,22 @@ class ViewGroupController extends GetxController {
       );
 
       if (r.statusCode == 200) {
+        fileIsTaped.value = false;
+        checkInListIds=[];
+        files.value=[];
+        files1.value=[];
+        await getFiles(groupID);
+       update();
+
         Get.snackbar("Error", r.data["message"] ?? "Success");
 
       } else {
         Get.snackbar("Error", r.data["message"] ?? "An error occurred");
       }
-      _isLoading.value = true;
+      _isLoadingCheck.value = true;
       update();
     } on dio.DioException catch (e) {
-      _isLoading.value = true;
+      _isLoadingCheck.value = true;
       update();
       print("eeeeeeeeeeeeeeeee");
       Get.snackbar("Error", e.response?.data["message"] ?? e.message);
@@ -271,12 +293,9 @@ class ViewGroupController extends GetxController {
 
         List<dynamic>versionsData = r.data["data"]["versions"];
         versions.addAll(versionsData.map((e) => VersionsData.fromJson(e)));
+        update();
         print(versions.length);
-        // if (versionsData != null) {
-        //   versions.assignAll(versionsData.map((e) => Versions.fromJson(e)));
-        // } else {
-        //   print("لا توجد بيانات للإصدارات في الاستجابة");
-        // }
+
         Get.toNamed("/preVersion",
             arguments: {
 

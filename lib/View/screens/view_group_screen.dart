@@ -32,9 +32,9 @@ class ViewGroupScreen extends GetView<ViewGroupController> {
                 appBar: MediaQuery.of(context).size.width < 850
                     ? AppBar(
                         backgroundColor: Colors.transparent,
-                        title: const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20.0),
-                          child: Text("Group name"),
+                        title: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: Text(controller.groupData.name??""),
                         ),
                         leading: IconButton(
                           icon: Icon(Icons.menu),

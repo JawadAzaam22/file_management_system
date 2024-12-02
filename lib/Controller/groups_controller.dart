@@ -7,21 +7,24 @@ import 'package:file_management_system/UI/constants.dart';
 
 class GroupsController extends GetxController {
   @override
+
+
+  void onInit() async {
+    service = Get.find<UserService>();
+    await getGroups();
+    super.onInit();
+  }
   GroupDrawerModel groupDrawerModel = new GroupDrawerModel();
   final RxList<GroupModel> myGroups = <GroupModel>[].obs;
   final RxList<GroupModel> otherGroups = <GroupModel>[].obs;
   late final UserService service;
   final RxBool _isLoading = RxBool(false);
   bool get isLoading => _isLoading.value;
-  void onInit() async {
-    service = Get.find<UserService>();
-    await getGroups();
-    super.onInit();
-  }
 
   void navToVerifyAccount() {
     Get.offAndToNamed("/create_groub");
   }
+
 
   void goToViewGroup(int groupId) {
     print("///////////////////////////////groupId");
@@ -29,6 +32,7 @@ class GroupsController extends GetxController {
     getGroupDrawerData(groupId);
     Get.toNamed("/viewGroup", arguments: {"id": groupId
         ,"groupData":groupDrawerModel});
+
 
   }
 

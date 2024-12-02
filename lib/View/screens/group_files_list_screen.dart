@@ -47,7 +47,9 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                         ? Container(
                             width: 160,
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                controller.checkIn();
+                              },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor:
                                     Theme.of(context).primaryColor,
@@ -60,7 +62,7 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   Text(
-                                    "Check In",
+                                  AppLocalizations.of(context)!.checkin,
                                     style: GoogleFonts.openSans(
                                       color: Theme.of(context)
                                           .textTheme
@@ -87,6 +89,8 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                             child: ElevatedButton(
                               onPressed: () {
                                 controller.fileIsTaped.value = false;
+                                controller.files.assignAll(controller.files1);
+                                controller.update();
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor:
@@ -100,7 +104,7 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   Text(
-                                    "Cancel select",
+                                    AppLocalizations.of(context)!.canselselect,
                                     style: GoogleFonts.openSans(
                                       color: Theme.of(context)
                                           .textTheme
@@ -216,13 +220,16 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
               SizedBox(
                 height: 10,
               ),
-               ... controller.files.map((e)=> controller.isLoading?Center(child: CircularProgressIndicator(),):
+               ... controller.files.map((e)=>
+
+               controller.isLoading?Center(child: CircularProgressIndicator(),):
                Column(
                  children: [
                    GestureDetector(
                      onLongPress: () {
                        controller.fileIsTaped.value = true;
                        controller.update();
+
                      },
                      child: Container(
                          height: 40,
@@ -233,14 +240,15 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                              child: Row(
                                children: [
                                  //شرط انو محجوز
-                                 controller.fileIsTaped.value && e.status==1
+                                 controller.fileIsTaped.value && controller.getStatus(e)==true
                                      ?
 
                                  Checkbox(
-                                     value:controller.val1 , onChanged: (val) {
-                                   controller.val1=val!;
+                                     value:!e.status!, onChanged: (val) {
+
+                                   e.status=!val!;
                                    controller.update();
-                                   controller.checkInListIdsFunc(controller.val.value,e.id!);
+                                   controller.checkInListIdsFunc(e.status!,e.id!);
                                    controller.update();
 
                                    print(controller.checkInListIds);
@@ -254,17 +262,17 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                                      MainAxisAlignment.spaceBetween,
                                      children: [
                                        Container(
-                                         width: 120, // تحديد عرض ثابت لاسم الملف
+                                         width: 120,
                                          child: Row(
                                            children: [
-                                             Icon(Icons.insert_drive_file, size: 20), // أيقونة الملف
-                                             SizedBox(width: 8), // مساحة بين الأيقونة والنص
+                                             Icon(Icons.insert_drive_file, size: 20),
+                                             SizedBox(width: 8),
                                              Expanded(
                                                child: Text(
                                                  e.name??"",
                                                  overflow:
-                                                 TextOverflow.ellipsis, // إضافة خاصية النقاط
-                                                 maxLines: 1, // تحديد عدد الأسطر
+                                                 TextOverflow.ellipsis,
+                                                 maxLines: 1,
                                                ),
                                              ),
                                            ],
@@ -381,26 +389,30 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                                                      ],
                                                    )
                                                ),
-                                               PopupMenuItem<String>(
-                                                   value: 'Delete',
-                                                   child: Row(
-                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                               if( controller.groupData.ownerId==controller.service.currentUser!.id)
+                                                 PopupMenuItem<String>(
+                                                     value: 'Delete',
+                                                     child: Row(
+                                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-                                                     children: [
-                                                       Text(
-                                                         'Delete',
-                                                         style: GoogleFonts
-                                                             .openSans(
-                                                           color:
-                                                           Theme.of(context)
-                                                               .textTheme
-                                                               .bodyMedium
-                                                               ?.color,
+                                                       children: [
+                                                         Text(
+                                                           'Delete',
+                                                           style: GoogleFonts
+                                                               .openSans(
+                                                             color:
+                                                             Theme.of(context)
+                                                                 .textTheme
+                                                                 .bodyMedium
+                                                                 ?.color,
+                                                           ),
                                                          ),
-                                                       ),
-                                                       Icon(iconsList[3]),
-                                                     ],
-                                                   )),
+                                                         Icon(iconsList[3]),
+                                                       ],
+                                                     )),
+
+
+
                                              ];
                                            }),
                                      ],
@@ -416,209 +428,6 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                ),),
 
 
-
-
-              // SizedBox(
-              //   height: 10,
-              // ),
-              // InkWell(
-              //   onLongPress: () {
-              //     controller.fileIsTaped.value = true;
-              //   },
-              //   child: Container(
-              //       height: 40,
-              //       color: Theme.of(context).primaryColor,
-              //       child: Padding(
-              //         padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              //         child: controller.fileIsTaped.value
-              //             ? Row(
-              //                 children: [
-              //                   Checkbox(value: false, onChanged: (val) {}),
-              //                   Expanded(
-              //                     child: Row(
-              //                       mainAxisAlignment:
-              //                           MainAxisAlignment.spaceBetween,
-              //                       children: [
-              //                         Row(
-              //                           children: [
-              //                             Icon(
-              //                               CupertinoIcons.folder_fill,
-              //                               color: Colors.blueAccent,
-              //                             ),
-              //                             SizedBox(
-              //                               width: 5,
-              //                             ),
-              //                             Text(
-              //                               "file name",
-              //                               style: GoogleFonts.openSans(
-              //                                 color: Theme.of(context)
-              //                                     .textTheme
-              //                                     .bodyMedium
-              //                                     ?.color,
-              //                               ),
-              //                             ),
-              //                           ],
-              //                         ),
-              //                         Row(
-              //                           children: [
-              //                             CircleAvatar(
-              //                               radius: 10,
-              //                             ),
-              //                             SizedBox(
-              //                               width: 5,
-              //                             ),
-              //                             Text(
-              //                               "Owner",
-              //                               style: GoogleFonts.openSans(
-              //                                 color: Theme.of(context)
-              //                                     .textTheme
-              //                                     .bodyMedium
-              //                                     ?.color,
-              //                               ),
-              //                             )
-              //                           ],
-              //                         ),
-              //                         Text(
-              //                           "Last Modified",
-              //                           style: GoogleFonts.openSans(
-              //                             color: Theme.of(context)
-              //                                 .textTheme
-              //                                 .bodyMedium
-              //                                 ?.color,
-              //                           ),
-              //                         ),
-              //                         Text(
-              //                           "1 GB",
-              //                           style: GoogleFonts.openSans(
-              //                             color: Theme.of(context)
-              //                                 .textTheme
-              //                                 .bodyMedium
-              //                                 ?.color,
-              //                           ),
-              //                         ),
-              //                         PopupMenuButton<String>(
-              //                           color: Colors.blueAccent,
-              //                           icon: const Icon(
-              //                               Icons.menu_open_rounded),
-              //                           onSelected: (value) {
-              //                             // هنا يمكنك إضافة منطق للتعامل مع الخيار المحدد
-              //                             handleMenuSelection(
-              //                                 context, value);
-              //                           },
-              //                           itemBuilder:
-              //                               (BuildContext context) {
-              //                             return {
-              //                               'Option 1',
-              //                               'Option 2',
-              //                               'Option 3'
-              //                             }.map((String choice) {
-              //                               return PopupMenuItem<String>(
-              //                                 value: choice,
-              //                                 child: Text(choice),
-              //                               );
-              //                             }).toList();
-              //                           },
-              //                         ),
-              //                       ],
-              //                     ),
-              //                   ),
-              //                 ],
-              //               )
-              //             : Row(
-              //                 children: [
-              //                   Expanded(
-              //                     child: Row(
-              //                       mainAxisAlignment:
-              //                           MainAxisAlignment.spaceBetween,
-              //                       children: [
-              //                         Row(
-              //                           children: [
-              //                             Icon(
-              //                               CupertinoIcons.folder_fill,
-              //                               color: Colors.blueAccent,
-              //                             ),
-              //                             SizedBox(
-              //                               width: 5,
-              //                             ),
-              //                             Text(
-              //                               "file name",
-              //                               style: GoogleFonts.openSans(
-              //                                 color: Theme.of(context)
-              //                                     .textTheme
-              //                                     .bodyMedium
-              //                                     ?.color,
-              //                               ),
-              //                             ),
-              //                           ],
-              //                         ),
-              //                         Row(
-              //                           children: [
-              //                             CircleAvatar(
-              //                               radius: 10,
-              //                             ),
-              //                             SizedBox(
-              //                               width: 5,
-              //                             ),
-              //                             Text(
-              //                               "Owner",
-              //                               style: GoogleFonts.openSans(
-              //                                 color: Theme.of(context)
-              //                                     .textTheme
-              //                                     .bodyMedium
-              //                                     ?.color,
-              //                               ),
-              //                             )
-              //                           ],
-              //                         ),
-              //                         Text(
-              //                           "Last Modified",
-              //                           style: GoogleFonts.openSans(
-              //                             color: Theme.of(context)
-              //                                 .textTheme
-              //                                 .bodyMedium
-              //                                 ?.color,
-              //                           ),
-              //                         ),
-              //                         Text(
-              //                           "1 GB",
-              //                           style: GoogleFonts.openSans(
-              //                             color: Theme.of(context)
-              //                                 .textTheme
-              //                                 .bodyMedium
-              //                                 ?.color,
-              //                           ),
-              //                         ),
-              //                         PopupMenuButton<String>(
-              //                           color: Colors.blueAccent,
-              //                           icon: const Icon(
-              //                               Icons.menu_open_rounded),
-              //                           onSelected: (value) {
-              //                             // هنا يمكنك إضافة منطق للتعامل مع الخيار المحدد
-              //                             handleMenuSelection(
-              //                                 context, value);
-              //                           },
-              //                           itemBuilder:
-              //                               (BuildContext context) {
-              //                             return {
-              //                               'Option 1',
-              //                               'Option 2',
-              //                               'Option 3'
-              //                             }.map((String choice) {
-              //                               return PopupMenuItem<String>(
-              //                                 value: choice,
-              //                                 child: Text(choice),
-              //                               );
-              //                             }).toList();
-              //                           },
-              //                         ),
-              //                       ],
-              //                     ),
-              //                   ),
-              //                 ],
-              //               ),
-              //       )),
-              // ),
-
             ],
           ),
         ),
@@ -626,14 +435,18 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
     ));
   }
 
-  void handleMenuSelection(BuildContext context, String value, Files file) {
+
+  void handleMenuSelection(BuildContext context, String value,Files file) {
+
     switch (value) {
       case 'Download':
         controller.downloadFile(file.name.toString(),file.versions![0].id!.toInt());
         break;
       case 'Previous Version':
+       print(file.id!);
        //nav to pre
-        controller.navToPrevious();
+        controller.navToPrevious(file.id!,file.name!);
+
         break;
       case 'Report':
 

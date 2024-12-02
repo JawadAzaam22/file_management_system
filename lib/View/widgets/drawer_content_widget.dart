@@ -60,7 +60,8 @@ class DrawerContent extends GetWidget<ViewGroupController> {
                   ),)),
                 ),
               ),
-              GestureDetector(
+              if( controller.groupData.ownerId == controller.service.currentUser!.id)
+                GestureDetector(
                 onTap: () {
                   onSelectPage(1);
                 },

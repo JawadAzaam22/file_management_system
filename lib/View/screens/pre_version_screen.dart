@@ -20,7 +20,7 @@ class PreVersionScreen extends GetView<PreVersionController> {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Obx(()=>
+        body:
 
             ListView(
           children: [
@@ -173,7 +173,7 @@ class PreVersionScreen extends GetView<PreVersionController> {
             ),
           ],
         ),
-        ),
+
       ),
     );
   }

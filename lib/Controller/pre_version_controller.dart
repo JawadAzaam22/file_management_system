@@ -14,7 +14,7 @@ class PreVersionController extends GetxController {
        service=Get.find();
 
        fileName =Get.arguments["fileName"];
-       fileName =Get.arguments["versions"];
+       versions =Get.arguments["versions"];
 
        super.onInit();
   }

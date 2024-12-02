@@ -1,38 +1,31 @@
+import 'package:file_management_system/Model/group_drawer_model.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dio/dio.dart' as dio;
 import '../Model/groups_with_files_model.dart';
+import '../Model/versionData_model.dart';
 import '../Services/service.dart';
 import '../UI/constants.dart';
 import 'package:dio/dio.dart';
-import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:html' as html;
-import 'package:dio/dio.dart' as dio;
-import '../Services/service.dart';
-import '../UI/constants.dart';
-
 class ViewGroupController extends GetxController {
-  late final UserService service;
+
 
   @override
   Future<void> onInit() async {
     groupID =Get.arguments["id"];
+    groupData =Get.arguments["groupData"];
     service=Get.find();
     await getFiles();
 
-      service=Get.find();
        super.onInit();
   }
+  late final UserService service;
   RxBool  val = RxBool(false);
   bool  val1=false;
   List checkInListIds=[];
-  List values=[
 
-  ];
  checkInListIdsFunc(bool val,int fileId){
    print(checkInListIds);
     if (val){
@@ -52,11 +45,8 @@ class ViewGroupController extends GetxController {
   RxBool  isTapped = RxBool(false);
 
   late int groupID;
-  void navToLogIn()async{
+  late GroupDrawerModel groupData;
 
-    Get.offAndToNamed("/splash");
-
-  }
   RxBool isDrawerOpen = RxBool(false);
 
 
@@ -105,13 +95,7 @@ class ViewGroupController extends GetxController {
 
 
   RxBool fileIsTaped=RxBool(false);
-  void navToPrevious(int fileID){
-    Get.toNamed("/preVersion",
-    arguments: {
-      "fileID":fileID,
-    }
-    );
-  }
+
   void navToReport(){
     Get.toNamed("/report");
   }
@@ -189,6 +173,7 @@ class ViewGroupController extends GetxController {
 
 
   RxList<Files>files=RxList([]);
+  RxList<Files>files1=RxList([]);
   Owner owner=Owner();
   Future<void> getFiles() async {
     dio.Dio d = dio.Dio();
@@ -198,7 +183,7 @@ class ViewGroupController extends GetxController {
     update();
     try {
       dio.Response r = await d.get(
-          "$baseURL/api/v1/group/files/${1}",
+          "$baseURL/api/v1/group/files/$groupID",
           options: dio.Options(
             headers: {
               "Authorization": "Bearer ${service.token}",
@@ -210,10 +195,11 @@ class ViewGroupController extends GetxController {
       List<dynamic> temp = r.data["data"]["files"];
       if (r.statusCode == 200) {
         files.addAll(temp.map((e) => Files.fromJson(e)));
+        files1.addAll(temp.map((e) => Files.fromJson(e)));
         owner = Owner.fromJson(r.data["data"]["owner"]);
         print(owner.id);
         print(files.length);
-        print(files[1].versions?.length);
+        print(files[0].versions?.length);
         print(files[0].versions);
       }  else {
         Get.snackbar("Error", r.data["message"] ?? "An error occurred");
@@ -227,6 +213,20 @@ class ViewGroupController extends GetxController {
       Get.snackbar("Error", e.response?.data["message"] ?? e.message);
     }
   }
+
+  bool getStatus(Files f){
+    for(int i=0;i<files1.length;i++){
+
+
+         if( f==files1[i]){
+           return files1[i].status!;
+         }
+
+    }
+    return false;
+  }
+
+
 
   Future<void> checkIn() async {
     dio.Dio d = dio.Dio();
@@ -260,6 +260,64 @@ class ViewGroupController extends GetxController {
       Get.snackbar("Error", e.response?.data["message"] ?? e.message);
     }
   }
+
+
+  final RxBool _isLoad = RxBool(false);
+  bool get isLoad => _isLoad.value;
+  RxList<VersionsData> versions=RxList([]);
+  Future<void> navToPrevious(int fileId,String fileName) async {
+    dio.Dio d = dio.Dio();
+
+
+    _isLoad.value = true;
+    update();
+    try {
+
+      dio.Response r = await d.get(
+          "$baseURL/api/v1/group/files/admin/$fileId",
+          options: dio.Options(
+            headers: {
+              "Authorization": "Bearer ${service.token}",
+            },
+          ));
+
+
+
+      if (r.statusCode == 200) {
+
+
+        List<dynamic>versionsData = r.data["data"]["versions"];
+        versions.addAll(versionsData.map((e) => VersionsData.fromJson(e)));
+        print(versions.length);
+        // if (versionsData != null) {
+        //   versions.assignAll(versionsData.map((e) => Versions.fromJson(e)));
+        // } else {
+        //   print("لا توجد بيانات للإصدارات في الاستجابة");
+        // }
+        Get.toNamed("/preVersion",
+            arguments: {
+
+              "fileName":fileName,
+              "versions":versions,
+            }
+        );
+
+        //print(versions.length);
+
+
+      }  else {
+        Get.snackbar("Error", r.data["message"] ?? "An error occurred");
+      }
+      _isLoad.value = false;
+      update();
+    } on dio.DioException catch (e) {
+      _isLoad.value = false;
+      update();
+      print("eeeeeeeeeeeeeeeee");
+      Get.snackbar("Error", e.response?.data["message"] ?? e.message);
+    }
+  }
+
 
 
 

@@ -62,7 +62,7 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   Text(
-                                    "Check In",
+                                  AppLocalizations.of(context)!.checkin,
                                     style: GoogleFonts.openSans(
                                       color: Theme.of(context)
                                           .textTheme
@@ -89,6 +89,7 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                             child: ElevatedButton(
                               onPressed: () {
                                 controller.fileIsTaped.value = false;
+                                controller.files.assignAll(controller.files1);
                                 controller.update();
                               },
                               style: ElevatedButton.styleFrom(
@@ -103,7 +104,7 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   Text(
-                                    "Cancel select",
+                                    AppLocalizations.of(context)!.canselselect,
                                     style: GoogleFonts.openSans(
                                       color: Theme.of(context)
                                           .textTheme
@@ -219,13 +220,16 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
               SizedBox(
                 height: 10,
               ),
-               ... controller.files.map((e)=> controller.isLoading?Center(child: CircularProgressIndicator(),):
+               ... controller.files.map((e)=>
+
+               controller.isLoading?Center(child: CircularProgressIndicator(),):
                Column(
                  children: [
                    GestureDetector(
                      onLongPress: () {
                        controller.fileIsTaped.value = true;
                        controller.update();
+
                      },
                      child: Container(
                          height: 40,
@@ -236,14 +240,15 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                              child: Row(
                                children: [
                                  //شرط انو محجوز
-                                 controller.fileIsTaped.value && e.status==1
+                                 controller.fileIsTaped.value && controller.getStatus(e)==true
                                      ?
 
                                  Checkbox(
-                                     value:controller.val1 , onChanged: (val) {
-                                   controller.val1=val!;
+                                     value:!e.status!, onChanged: (val) {
+
+                                   e.status=!val!;
                                    controller.update();
-                                   controller.checkInListIdsFunc(controller.val.value,e.id!);
+                                   controller.checkInListIdsFunc(e.status!,e.id!);
                                    controller.update();
 
                                    print(controller.checkInListIds);
@@ -257,17 +262,17 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                                      MainAxisAlignment.spaceBetween,
                                      children: [
                                        Container(
-                                         width: 120, // تحديد عرض ثابت لاسم الملف
+                                         width: 120,
                                          child: Row(
                                            children: [
-                                             Icon(Icons.insert_drive_file, size: 20), // أيقونة الملف
-                                             SizedBox(width: 8), // مساحة بين الأيقونة والنص
+                                             Icon(Icons.insert_drive_file, size: 20),
+                                             SizedBox(width: 8),
                                              Expanded(
                                                child: Text(
                                                  e.name??"",
                                                  overflow:
-                                                 TextOverflow.ellipsis, // إضافة خاصية النقاط
-                                                 maxLines: 1, // تحديد عدد الأسطر
+                                                 TextOverflow.ellipsis,
+                                                 maxLines: 1,
                                                ),
                                              ),
                                            ],
@@ -384,27 +389,30 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                                                      ],
                                                    )
                                                ),
+                                               if( controller.groupData.ownerId==controller.service.currentUser!.id)
+                                                 PopupMenuItem<String>(
+                                                     value: 'Delete',
+                                                     child: Row(
+                                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-                                               PopupMenuItem<String>(
-                                                   value: 'Delete',
-                                                   child: Row(
-                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                                                     children: [
-                                                       Text(
-                                                         'Delete',
-                                                         style: GoogleFonts
-                                                             .openSans(
-                                                           color:
-                                                           Theme.of(context)
-                                                               .textTheme
-                                                               .bodyMedium
-                                                               ?.color,
+                                                       children: [
+                                                         Text(
+                                                           'Delete',
+                                                           style: GoogleFonts
+                                                               .openSans(
+                                                             color:
+                                                             Theme.of(context)
+                                                                 .textTheme
+                                                                 .bodyMedium
+                                                                 ?.color,
+                                                           ),
                                                          ),
-                                                       ),
-                                                       Icon(iconsList[3]),
-                                                     ],
-                                                   )),
+                                                         Icon(iconsList[3]),
+                                                       ],
+                                                     )),
+
+
+
                                              ];
                                            }),
                                      ],
@@ -433,8 +441,10 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
         downloadFile();
         break;
       case 'Previous Version':
+       print(file.id!);
        //nav to pre
-        controller.navToPrevious(file.id!);
+        controller.navToPrevious(file.id!,file.name!);
+
         break;
       case 'Report':
 

@@ -82,7 +82,7 @@ class Owner {
 class Files {
   int? id;
   String? name;
-  int? status;
+  bool? status;
   int? groupId;
   List<Versions>? versions;
 

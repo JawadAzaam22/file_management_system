@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:file_management_system/Model/groups_with_files_model.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,16 +10,19 @@ import '../UI/constants.dart';
 class PreVersionController extends GetxController {
   late final UserService service;
   @override
-  void onInit() {
+  void onInit() async{
        service=Get.find();
+
+       fileName =Get.arguments["fileName"];
+       fileName =Get.arguments["versions"];
+
        super.onInit();
   }
-  RxBool fileIsTaped=RxBool(false);
-  void navToLogIn()async{
 
-    Get.offAndToNamed("/splash");
+  late String fileName;
+  late RxList<Versions> versions;
 
-  }
+
   Future<void>downloadFile(String fileName)async{
     dio.Dio d = dio.Dio();
     try {
@@ -44,4 +48,8 @@ class PreVersionController extends GetxController {
       print('Error downloading file: $e');
     }
   }
+
+  final RxBool _isLoad = RxBool(false);
+
+
 }

@@ -12,7 +12,8 @@ class HomeScreen extends GetView<SidebarXController> {
   @override
   Widget build(BuildContext context) {
     final isSmallScreen = MediaQuery.of(context).size.width <= 850;
-    return Container(
+    return
+      Container(
       decoration: BoxDecoration(
         gradient: AppTheme.backgroundGradient(context),
       ),

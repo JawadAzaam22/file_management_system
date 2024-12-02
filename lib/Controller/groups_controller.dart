@@ -26,10 +26,8 @@ class GroupsController extends GetxController {
   }
 
 
-  void goToViewGroup(int groupId) {
-    print("///////////////////////////////groupId");
-    print(groupId.toString());
-    getGroupDrawerData(groupId);
+  void goToViewGroup(int groupId) async {
+     await getGroupDrawerData(groupId);
     Get.toNamed("/viewGroup", arguments: {"id": groupId
         ,"groupData":groupDrawerModel});
 

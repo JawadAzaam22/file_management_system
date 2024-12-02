@@ -82,16 +82,18 @@ class Owner {
 class Files {
   int? id;
   String? name;
-  bool? status;
+  int? status;
+  bool? statusBool;
   int? groupId;
   List<Versions>? versions;
 
-  Files({this.id, this.name, this.status, this.groupId, this.versions});
+  Files({this.id, this.name, this.status,this.statusBool, this.groupId, this.versions});
 
   Files.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     status = json['status'];
+    statusBool = json['statusBool'];
     groupId = json['group_id'];
     if (json['versions'] != null) {
       versions = <Versions>[];
@@ -106,6 +108,7 @@ class Files {
     data['id'] = this.id;
     data['name'] = this.name;
     data['status'] = this.status;
+    data['statusBool'] = this.statusBool;
     data['group_id'] = this.groupId;
     if (this.versions != null) {
       data['versions'] = this.versions!.map((v) => v.toJson()).toList();

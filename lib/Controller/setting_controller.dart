@@ -15,10 +15,10 @@ class SettingController extends GetxController {
   late UserModel userModel=new UserModel();
   final RxBool _isLoading = RxBool(false);
   bool get isLoading => _isLoading.value;
-  void onInit() {
+  void onInit() async {
     service = Get.find<UserService>();
     getThemeMode();
-    getProfile();
+     await getProfile();
     super.onInit();
   }
   void goToAboutUs() {

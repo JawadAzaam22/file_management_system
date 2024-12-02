@@ -240,15 +240,15 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                              child: Row(
                                children: [
                                  //شرط انو محجوز
-                                 controller.fileIsTaped.value && controller.getStatus(e)==true
+                                 controller.fileIsTaped.value
                                      ?
 
                                  Checkbox(
-                                     value:!e.status!, onChanged: (val) {
+                                     value:!e.statusBool!, onChanged: (val) {
 
-                                   e.status=!val!;
+                                   e.statusBool=!val!;
                                    controller.update();
-                                   controller.checkInListIdsFunc(e.status!,e.id!);
+                                   controller.checkInListIdsFunc(e.statusBool!,e.id!);
                                    controller.update();
 
                                    print(controller.checkInListIds);

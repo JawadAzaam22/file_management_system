@@ -69,7 +69,6 @@ class GroupsScreen extends GetView<GroupsController> {
                               } else {
                                 controller.goToViewGroup(
                                     controller.myGroups[index - 1].id!.toInt());
-                                print(controller.myGroups[index - 1].id!.toInt());
                               }
                             },
                             child: Card(

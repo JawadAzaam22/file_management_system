@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:async';
 
+import 'package:file_management_system/Model/checkin_file_model.dart';
 import 'package:file_management_system/Model/group_drawer_model.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
@@ -29,7 +30,6 @@ class ViewGroupController extends GetxController {
   RxBool  val = RxBool(false);
   bool  val1=false;
   List checkInListIds=[];
-
  checkInListIdsFunc(bool val,int fileId){
    print(checkInListIds);
     if (val){
@@ -178,10 +178,7 @@ class ViewGroupController extends GetxController {
 
         files1.addAll(temp.map((e) => Files.fromJson(e)));
         owner = Owner.fromJson(r.data["data"]["owner"]);
-        print(owner.id);
-        print(files.length);
-        print(files[0].versions?.length);
-        print(files[0].versions);
+
       }  else {
 
         Get.snackbar("Error", r.data["message"] ?? "An error occurred");
@@ -191,22 +188,23 @@ class ViewGroupController extends GetxController {
     } on dio.DioException catch (e) {
       _isLoading.value = false;
       update();
-      print("eeeeeeeeeeeeeeeee");
+      print("eeeeeeeeeeeeeeeeekkkkk");
       Get.snackbar("Error", e.response?.data["message"] ?? e.message);
     }
   }
 
-  bool getStatus(Files f){
-    for(int i=0;i<files1.length;i++){
+  // bool getStatus(Files f){
+  //   for(int i=0;i<files1.length;i++){
+  //
+  //
+  //        if( f==files1[i]){
+  //          return files1[i].status!;
+  //        }
+  //
+  //   }
+  //   return false;
+  // }
 
-
-         if( f==files1[i]){
-           return files1[i].status!;
-         }
-
-    }
-    return false;
-  }
 
 
 

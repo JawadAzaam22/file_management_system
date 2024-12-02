@@ -16,74 +16,64 @@ import '../Services/service.dart';
 import '../UI/constants.dart';
 
 class ViewGroupController extends GetxController {
-  late final UserService service;
+
 
   @override
   Future<void> onInit() async {
-    groupID =Get.arguments["id"];
-    service=Get.find();
+    service = Get.find();
+    groupID = Get.arguments["id"];
     await getFiles();
 
-      service=Get.find();
-       super.onInit();
+    super.onInit();
   }
-  RxBool  val = RxBool(false);
-  bool  val1=false;
-  List checkInListIds=[];
-  List values=[
-
-  ];
- checkInListIdsFunc(bool val,int fileId){
-   print(checkInListIds);
-    if (val){
+  late final UserService service;
+  RxBool val = RxBool(false);
+  bool val1 = false;
+  List checkInListIds = [];
+  List values = [];
+  checkInListIdsFunc(bool val, int fileId) {
+    print(checkInListIds);
+    if (val) {
       checkInListIds.add(fileId);
       update();
       print(checkInListIds);
-
-    }
-    else {
+    } else {
       checkInListIds.remove(fileId);
       update();
 
       print(checkInListIds);
     }
-
   }
-  RxBool  isTapped = RxBool(false);
+
+  RxBool isTapped = RxBool(false);
 
   late int groupID;
-  void navToLogIn()async{
-
+  void navToLogIn() async {
     Get.offAndToNamed("/splash");
-
   }
+
   RxBool isDrawerOpen = RxBool(false);
 
-
-  RxInt currentIndex=RxInt(0);
+  RxInt currentIndex = RxInt(0);
 
   void toggleDrawer() {
-
-      isDrawerOpen.value = !isDrawerOpen.value;
-
+    isDrawerOpen.value = !isDrawerOpen.value;
   }
 
   void selectPage(int index) {
-
-      currentIndex.value = index;
-      isDrawerOpen.value = false;
-      update();
-
+    currentIndex.value = index;
+    isDrawerOpen.value = false;
+    update();
   }
-  Future<void>downloadFile(String fileName)async{
+
+  Future<void> downloadFile(String fileName,int versionID) async {
     dio.Dio d = dio.Dio();
     try {
       final response = await d.get(
-        "$baseURL/api/v1/file/version/download/5",
-        options: dio.Options( headers: {
+        "$baseURL/api/v1/file/version/download/$versionID",
+        options: dio.Options(headers: {
           "Authorization": "Bearer ${service.token}",
-        },
-            responseType: ResponseType.bytes),
+        }, responseType: ResponseType.bytes),
       );
       if (response.statusCode == 200) {
         final blob = html.Blob([response.data]);
@@ -93,27 +83,24 @@ class ViewGroupController extends GetxController {
           ..click();
 
         html.Url.revokeObjectUrl(url);
-
       } else {
         print('Failed to download file: ${response.statusCode}');
       }
-    }catch (e) {
+    } catch (e) {
       print('Error downloading file: $e');
     }
   }
 
-
-
-  RxBool fileIsTaped=RxBool(false);
-  void navToPrevious(){
+  RxBool fileIsTaped = RxBool(false);
+  void navToPrevious() {
     Get.toNamed("/preVersion");
   }
-  void navToReport(){
+
+  void navToReport() {
     Get.toNamed("/report");
   }
-  void deleteFile(){
 
-  }
+  void deleteFile() {}
 
   final RxBool _isLoading = RxBool(false);
 
@@ -124,91 +111,66 @@ class ViewGroupController extends GetxController {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
 
     if (result != null) {
-
       _file = result.files.first;
       update();
-
     }
   }
 
   Future<void> uploadFile() async {
+    await pickFile();
+    if (_file == null) {
+      Get.snackbar("Error", "No file selected.");
+      return;
+    }
+
     dio.Dio d = dio.Dio();
 
     try {
-
-
-
       String fileName = _file!.name;
+
       dio.FormData formData = dio.FormData.fromMap({
-        "group_id":"1",
+        "group_id": groupID,
         "file": dio.MultipartFile.fromBytes(_file!.bytes!, filename: fileName),
       });
-
-
-
-      _isLoading.value = true;
-
-      dio.Response r = await d.post("$baseURL/api/v1/auth/register",
-
-          options: dio.Options(
-            headers: {
-              "Authorization": "Bearer ${service.token}",
-            },
-          ),
-          data: formData
-
+      dio.Response r = await d.post(
+        "$baseURL/api/v1/file/create",
+        options: dio.Options(
+          headers: {
+            "Authorization": "Bearer ${service.token}",
+          },
+        ),
+        data: formData,
       );
 
-
       if (r.statusCode == 200) {
-
-        Get.offAndToNamed("/viewGroup");
-      } else {
-        Get.snackbar("Error", r.data["message"] ?? "An error occurred");
+        Get.snackbar("Success", r.data["message"]);
+      } else if (r.statusCode == 400) {
+        Get.snackbar("Error","You cannot upload afile with this extension");
       }
-
-    } on dio.DioException catch (e) {
-      print("Dio Exception: ${e.response?.data}");
-      _isLoading.value = false;
-      Get.snackbar("Error", e.response?.data["message"] ?? e.message);
-      print( e.message);
-    } catch (e) {
-      print("General Exception: $e");
-      _isLoading.value = false;
-      Get.snackbar("Error", "An unexpected error occurred.");
-    } finally {
-      _isLoading.value = false;
+    }on dio.DioException catch (e) {
+      Get.snackbar("Error","You cannot upload afile with this extension");
     }
-
   }
 
-
-
-  RxList<Files>files=RxList([]);
+  RxList<Files> files = RxList([]);
   Future<void> getFiles() async {
     dio.Dio d = dio.Dio();
-
 
     _isLoading.value = true;
     update();
     try {
-      dio.Response r = await d.get(
-          "$baseURL/api/v1/group/files/${1}",
+      dio.Response r = await d.get("$baseURL/api/v1/group/files/${1}",
           options: dio.Options(
             headers: {
               "Authorization": "Bearer ${service.token}",
             },
           ));
 
-
-
       List<dynamic> temp = r.data["data"]["files"];
       if (r.statusCode == 200) {
         files.addAll(temp.map((e) => Files.fromJson(e)));
-        print(files.length);
-        print(files[1].versions?.length);
-        print(files[0].versions);
-      }  else {
+
+      } else {
         Get.snackbar("Error", r.data["message"] ?? "An error occurred");
       }
       _isLoading.value = false;
@@ -225,8 +187,8 @@ class ViewGroupController extends GetxController {
     dio.Dio d = dio.Dio();
 
     try {
-      dio.Response r =
-      await d.patch("$baseURL/api/v1/invitation/reject/$id",
+      dio.Response r = await d.patch(
+        "$baseURL/api/v1/invitation/reject/$id",
         options: dio.Options(
           headers: {
             "Authorization": "Bearer ${service.token}",
@@ -235,8 +197,6 @@ class ViewGroupController extends GetxController {
       );
 
       if (r.statusCode == 200) {
-
-
       } else {
         Get.snackbar("Error", r.data["message"] ?? "An error occurred");
       }
@@ -247,7 +207,4 @@ class ViewGroupController extends GetxController {
       Get.snackbar("Error", e.response?.data["message"] ?? e.message);
     }
   }
-
-
-
 }

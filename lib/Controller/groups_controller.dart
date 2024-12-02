@@ -24,16 +24,11 @@ class GroupsController extends GetxController {
   }
 
   void goToViewGroup(int groupId) {
-
-    Get.toNamed("/viewGroup",
-        arguments: {
-          "id": groupId
-        },
-        );
-
+    print("///////////////////////////////groupId");
+    print(groupId.toString());
+    getGroupDrawerData(groupId);
     Get.toNamed("/viewGroup", arguments: {"id": groupId
         ,"groupData":groupDrawerModel});
-    getGroupDrawerData(groupId);
 
   }
 
@@ -88,6 +83,7 @@ class GroupsController extends GetxController {
 
       print(groupDrawerModel.name);
       print(groupDrawerModel.description);
+      print(groupDrawerModel.ownerId);
     } else {
       Get.snackbar("Error", r.data["message"] ?? "error");
     }

@@ -118,8 +118,7 @@ class GroupFilesListController extends GetxController {
       List<dynamic> temp = r.data["data"]["files"];
       if (r.statusCode == 200) {
         files.addAll(temp.map((e) => Files.fromJson(e)));
-        print(files.length);
-        print(files[1].versions?.length);
+
       }  else {
         Get.snackbar("Error", r.data["message"] ?? "An error occurred");
       }

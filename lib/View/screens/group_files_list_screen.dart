@@ -1,4 +1,5 @@
 import 'package:file_management_system/Controller/view_group_controller.dart';
+import 'package:file_management_system/Model/groups_with_files_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -310,7 +311,7 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
                                                Icons.menu_open_rounded),
                                            onSelected: (value) {
 
-                                             handleMenuSelection(context, value);
+                                             handleMenuSelection(context, value,e);
                                            },
                                            itemBuilder: (BuildContext context) {
                                              List<IconData> iconsList = [
@@ -625,10 +626,10 @@ class GroupFilesList extends GetWidget<ViewGroupController> {
     ));
   }
 
-  void handleMenuSelection(BuildContext context, String value) {
+  void handleMenuSelection(BuildContext context, String value, Files file) {
     switch (value) {
       case 'Download':
-        downloadFile();
+        controller.downloadFile(file.name.toString(),file.versions![0].id!.toInt());
         break;
       case 'Previous Version':
        //nav to pre

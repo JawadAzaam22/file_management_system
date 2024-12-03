@@ -5,6 +5,7 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:html' as html;
 import 'package:dio/dio.dart' as dio;
+import '../Model/versionData_model.dart';
 import '../Services/service.dart';
 import '../UI/constants.dart';
 class PreVersionController extends GetxController {
@@ -14,24 +15,23 @@ class PreVersionController extends GetxController {
        service=Get.find();
 
        fileName =Get.arguments["fileName"];
-       fileName =Get.arguments["versions"];
+       versions =Get.arguments["versions"];
 
        super.onInit();
   }
 
   late String fileName;
-  late RxList<Versions> versions;
+  late RxList<VersionsData> versions;
 
 
-  Future<void>downloadFile(String fileName)async{
+  Future<void> downloadFile(String fileName,int versionID) async {
     dio.Dio d = dio.Dio();
     try {
       final response = await d.get(
-        "$baseURL/api/v1/file/version/download/5",
-        options: dio.Options( headers: {
+        "$baseURL/api/v1/file/version/download/$versionID",
+        options: dio.Options(headers: {
           "Authorization": "Bearer ${service.token}",
-        },
-            responseType: ResponseType.bytes),
+        }, responseType: ResponseType.bytes),
       );
       if (response.statusCode == 200) {
         final blob = html.Blob([response.data]);
@@ -44,7 +44,7 @@ class PreVersionController extends GetxController {
       } else {
         print('Failed to download file: ${response.statusCode}');
       }
-    }catch (e) {
+    } catch (e) {
       print('Error downloading file: $e');
     }
   }

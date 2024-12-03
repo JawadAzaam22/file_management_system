@@ -7,13 +7,12 @@ import 'package:file_management_system/UI/constants.dart';
 
 class GroupsController extends GetxController {
   @override
-
-
   void onInit() async {
     service = Get.find<UserService>();
     await getGroups();
     super.onInit();
   }
+
   GroupDrawerModel groupDrawerModel = new GroupDrawerModel();
   final RxList<GroupModel> myGroups = <GroupModel>[].obs;
   final RxList<GroupModel> otherGroups = <GroupModel>[].obs;
@@ -25,13 +24,11 @@ class GroupsController extends GetxController {
     Get.offAndToNamed("/create_groub");
   }
 
-
   void goToViewGroup(int groupId) async {
-     await getGroupDrawerData(groupId);
-    Get.toNamed("/viewGroup", arguments: {"id": groupId
-        ,"groupData":groupDrawerModel});
+    await getGroupDrawerData(groupId);
 
-
+    Get.toNamed("/viewGroup",
+        arguments: {"id": groupId, "groupData": groupDrawerModel});
   }
 
   void goToCreatGroup() {

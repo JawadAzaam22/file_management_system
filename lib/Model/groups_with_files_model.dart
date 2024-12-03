@@ -108,7 +108,7 @@ class Files {
     data['id'] = this.id;
     data['name'] = this.name;
     data['status'] = this.status;
-    data['statusBool'] = this.statusBool;
+    data['statusBool'] = this.status;
     data['group_id'] = this.groupId;
     if (this.versions != null) {
       data['versions'] = this.versions!.map((v) => v.toJson()).toList();

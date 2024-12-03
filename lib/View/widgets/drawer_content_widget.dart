@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,13 +31,13 @@ class DrawerContent extends GetWidget<ViewGroupController> {
 
               MediaQuery.of(context).size.width < 850?SizedBox():Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text('Group Name',style: GoogleFonts.openSans(
+                child: Text(controller.groupData.name??"",style: GoogleFonts.openSans(
                     fontSize: 30
                 ),),
               ),
-              const DrawerHeader(
+               DrawerHeader(
                 child: Text(
-                  'Description: this group to upload files ',
+                  'Description:${controller.groupData.description}',
                   style: TextStyle(
                     color: Colors.grey,
                   ),
@@ -132,91 +133,35 @@ class DrawerContent extends GetWidget<ViewGroupController> {
                     child: ListView(
                       padding: EdgeInsets.all(20),
                       children: [
-                        Row(
+                        ...?controller.groupData.users?.map((e)=>Column(
                           children: [
-                            CircleAvatar(
-                              radius: 20,
+                            Row(
+                              children: [
+                                CircleAvatar(
+                                  radius: 20,
+                                  child: CachedNetworkImage(
+                                    fit: BoxFit.cover,
+                                    imageUrl: e.image_path??"",
+                                    placeholder: (context, url) => CircularProgressIndicator(),
+                                    errorWidget: (context, url, error) => Icon(Icons.error),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  e.username??"",
+                                  style: GoogleFonts.openSans(
+                                    color: Theme.of(context).textTheme.bodyMedium?.color,
+                                  ),
+                                )
+                              ],
                             ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              "Owner",
-                              style: GoogleFonts.openSans(
-                                color: Theme.of(context).textTheme.bodyMedium?.color,
-                              ),
-                            )
+                            SizedBox(height: 10,),
                           ],
-                        ),
-                        SizedBox(height: 10,),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 20,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              "Owner",
-                              style: GoogleFonts.openSans(
-                                color: Theme.of(context).textTheme.bodyMedium?.color,
-                              ),
-                            )
-                          ],
-                        ),
-                        SizedBox(height: 10,),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 20,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              "Owner",
-                              style: GoogleFonts.openSans(
-                                color: Theme.of(context).textTheme.bodyMedium?.color,
-                              ),
-                            )
-                          ],
-                        ),
-                        SizedBox(height: 10,),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 20,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              "Owner",
-                              style: GoogleFonts.openSans(
-                                color: Theme.of(context).textTheme.bodyMedium?.color,
-                              ),
-                            )
-                          ],
-                        ),
-                        SizedBox(height: 10,),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 20,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              "Owner",
-                              style: GoogleFonts.openSans(
-                                color: Theme.of(context).textTheme.bodyMedium?.color,
-                              ),
-                            )
-                          ],
-                        ),
-                        SizedBox(height: 10,),
+                        ),),
+
+
                         Container(
                           width: 140,
                           child: ElevatedButton(

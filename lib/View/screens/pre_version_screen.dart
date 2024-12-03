@@ -20,7 +20,7 @@ class PreVersionScreen extends GetView<PreVersionController> {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Obx(()=>
+        body:
 
             ListView(
           children: [
@@ -121,24 +121,14 @@ class PreVersionScreen extends GetView<PreVersionController> {
                                       ),
                                     ],
                                   ),
-                                  Row(
-                                    children: [
-                                      CircleAvatar(
-                                        radius: 10,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        "Owner",
-                                        style: GoogleFonts.openSans(
-                                          color: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium
-                                              ?.color,
-                                        ),
-                                      )
-                                    ],
+                                  Text(
+                                    e.user!["username"],
+                                    style: GoogleFonts.openSans(
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.color,
+                                    ),
                                   ),
                                   Text(
                                     DateFormat('yyyy-MM-dd').format(DateTime.parse( e.createdAt??"")),
@@ -159,7 +149,11 @@ class PreVersionScreen extends GetView<PreVersionController> {
                                           ?.color,
                                     ),
                                   ),
-                                  Icon(Icons.download_outlined),
+                                  IconButton(
+                                      onPressed: (){
+                                        controller.downloadFile(controller.fileName,e.id!);
+                                      },
+                                      icon:  Icon(Icons.download_outlined)),
                                 ],
                               ))),
                       SizedBox(
@@ -173,7 +167,7 @@ class PreVersionScreen extends GetView<PreVersionController> {
             ),
           ],
         ),
-        ),
+
       ),
     );
   }

@@ -4,11 +4,13 @@ import 'dart:async';
 import 'package:file_management_system/Model/checkin_file_model.dart';
 import 'package:file_management_system/Model/group_drawer_model.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:dio/dio.dart' as dio;
 import '../Model/groups_with_files_model.dart';
 import '../Model/versionData_model.dart';
+import '../Model/file_model.dart';
 import '../Services/service.dart';
 import '../UI/constants.dart';
 import 'package:dio/dio.dart';
@@ -23,7 +25,7 @@ class ViewGroupController extends GetxController {
     groupData =Get.arguments["groupData"];
     service=Get.find();
     await getFiles(groupID);
-
+    await fetchFileRequests();
        super.onInit();
   }
   late final UserService service;
@@ -314,6 +316,141 @@ class ViewGroupController extends GetxController {
       update();
       print("eeeeeeeeeeeeeeeee");
       Get.snackbar("Error", e.response?.data["message"] ?? e.message);
+    }
+  }
+
+
+  var isLoadingF = false.obs;
+  RxList<Data> fileRequests = RxList<Data>([]);
+
+  Future<void> fetchFileRequests() async {
+    dio.Dio d = dio.Dio();
+    isLoadingF.value = true;
+    try {
+      final response  = await d.post(
+        "$baseURL/api/v1/file/requests",
+        data: {
+          "group_id" :groupID,
+        },
+        options: dio.Options(
+          headers: {
+            "Authorization": "Bearer ${service.token}",
+          },
+        ),
+      );
+      if (response.statusCode == 200) {
+        List<dynamic> temp = response.data["data"];
+        fileRequests.addAll(temp.map((e) => Data.fromJson(e)));
+        Get.snackbar(
+          "نجاح",
+          "تم جلب الطلبات بنجاح",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+      } else {
+        Get.snackbar(
+          "خطأ",
+          "فشل في جلب الطلبات",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      }
+    } catch (e) {
+      Get.snackbar(
+        "خطأ",
+        "حدث خطأ: ${e.toString()}",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    } finally {
+      isLoadingF.value = false;
+    }
+  }
+
+
+
+  Future<void> acceptFile(int index, int fileId) async {
+    dio.Dio d = dio.Dio();
+    try {
+      final response = await d.patch(
+        "$baseURL/api/v1/file/accept/$fileId",
+        options: dio.Options(
+          headers: {
+            "Authorization": "Bearer ${service.token}",
+          },
+        ),
+      );
+      if (response.statusCode == 200) {
+        Get.snackbar(
+          "نجاح",
+          "تم قبول الملف",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+        fileRequests.removeAt(index);
+      } else {
+        Get.snackbar(
+          "خطأ",
+          "فشل في قبول الملف",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      }
+    } catch (e) {
+      Get.snackbar(
+        "خطأ",
+        "حدث خطأ: ${e.toString()}",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
+  }
+
+
+
+  Future<void> rejectFile(int index, int fileId) async {
+    dio.Dio d = dio.Dio();
+    try {
+      final response = await d.patch(
+        "$baseURL/api/v1/file/reject/$fileId",
+        options: dio.Options(
+          headers: {
+            "Authorization": "Bearer ${service.token}",
+          },
+        ),
+      );
+      if (response.statusCode == 200) {
+        Get.snackbar(
+          "نجاح",
+          "تم رفض الملف",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+        fileRequests.removeAt(index);
+      } else {
+        Get.snackbar(
+          "خطأ",
+          "فشل في رفض الملف",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      }
+    } catch (e) {
+      Get.snackbar(
+        "خطأ",
+        "حدث خطأ: ${e.toString()}",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
     }
   }
 

@@ -80,32 +80,7 @@ class SplashScreen extends GetView<SplashController> {
                     ),
                   ),
                 ),
-                // InkWell(
-                //   onTap: (){
-                //   Get.toNamed("otp");
-                //   },
-                //   child: Container(
-                //     width: 150,
-                //     height: 50,
-                //     decoration: ShapeDecoration(
-                //       color: Color(0xFF1A649A),
-                //       shape: RoundedRectangleBorder(
-                //         side: BorderSide(width: 3, color: Colors.white),
-                //         borderRadius: BorderRadius.circular(7.11),
-                //       ),
-                //     ),
-                //   child:  Center(
-                //     child: Text(
-                //       'ready',
-                //       style: TextStyle(
-                //         color: Colors.white,
-                //         fontSize: 25,
-                //         fontWeight: FontWeight.w400,
-                //       ),
-                //     ),
-                //   ),
-                //   ),
-                // ),
+
               ],
             ),
           ),

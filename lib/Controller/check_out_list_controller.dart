@@ -83,8 +83,8 @@ class CheckOutListController extends GetxController {
             .toList();
       }
       _isLoading.value = false;
-      print(checkInFiles[0].fileName);
-      print(checkInFiles[0].lockedAt);
+      // print(checkInFiles[0].fileName);
+      // print(checkInFiles[0].lockedAt);
       // print(r);
     } else {
       Get.snackbar("Error", r.data["message"] ?? "error");

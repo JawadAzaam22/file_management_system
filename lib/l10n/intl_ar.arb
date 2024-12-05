@@ -73,4 +73,16 @@
 ,"reservtime":":وقت الحجز"
 ,"checkin":"حجز"
 ,"canselselect":"إلغاء التحديد"
+,"create":"أنشئ"
+,"description":"الوصف:"
+,"enterdescriotion":"ادخل الوصف"
+,"descriptionvalidation":"الرجاء ادخال الوصف"
+,"group":"اسم المجموهة :"
+,"entergroub":"ادخل المجموعة"
+,"groubvalidation":"الرجاء ادخال اسم المجموعة:"
+,"noResultsFound":"لا يوجد نتائج"
+,"search":"بحث"
+,"addMember":"اضف اعضاء"
+,"createGroup":"انشئ مجموعة"
+
 }

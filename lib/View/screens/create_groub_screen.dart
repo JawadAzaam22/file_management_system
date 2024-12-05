@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../Controller/create_greoup_contoller.dart';
 import '../../UI/color.dart';
+import '../../l10n/app_localizations.dart';
 
 class CreateGroubScreen extends GetView<CreateGroupController> {
   const CreateGroubScreen({super.key});
@@ -22,46 +23,44 @@ class CreateGroubScreen extends GetView<CreateGroupController> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(height: 30),
-                  Container(
-                    constraints: BoxConstraints(maxWidth: 502),
-                    padding: EdgeInsets.symmetric(vertical: 40, horizontal: 40),
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            width: 5, color: Theme.of(context).canvasColor),
-                        borderRadius: BorderRadius.circular(20),
-                        color: Theme.of(context).colorScheme.primaryContainer
-                        //Color(0x3F06235B),
+                  SizedBox(height: 15),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          AppLocalizations.of(context)!.createGroup,
+                          style: TextStyle(
+                            fontSize: 50,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).textTheme.bodyLarge?.color,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                    child: Text(
-                      "create group",
-                      style: TextStyle(
-                        fontSize: 40,
-                        fontWeight: FontWeight.w300,
-                        color: Theme.of(context).textTheme.bodyLarge?.color,
-                      ),
-                      textAlign: TextAlign.center,
+                      ],
                     ),
                   ),
+
                   SizedBox(
                     height: 20,
                   ),
                   Container(
                     constraints: BoxConstraints(maxWidth: 502),
                     padding:
-                        EdgeInsets.symmetric(vertical: 40, horizontal: 100),
+                    EdgeInsets.symmetric(vertical: 40, horizontal: 100),
                     decoration: BoxDecoration(
                         border:
-                            Border.all(color: Theme.of(context).canvasColor),
+                        Border.all(color: Theme.of(context).canvasColor),
                         borderRadius: BorderRadius.circular(8),
                         color: Theme.of(context).colorScheme.primaryContainer
-                        //Color(0x3F06235B),
-                        ),
+                      //Color(0x3F06235B),
+                    ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          "add the member",
+                          AppLocalizations.of(context)!.addMember,
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w300,
@@ -72,10 +71,10 @@ class CreateGroubScreen extends GetView<CreateGroupController> {
                         TextFormField(
                           controller: controller.searchContoller,
                           onChanged: (value){
-                           controller.onSearchChanged(value);
+                            controller.onSearchChanged(value);
                           },
                           decoration: InputDecoration(
-                            hintText: 'Search',
+                            hintText: AppLocalizations.of(context)!.search,
                             hintStyle: TextStyle(color: Colors.white70),
                             filled: true,
                             fillColor: Colors.blue.shade600,
@@ -102,7 +101,7 @@ class CreateGroubScreen extends GetView<CreateGroupController> {
                             if (controller.searchResults.isEmpty) {
                               return Center(
                                 child: Text(
-                                  'No results found',
+                                  AppLocalizations.of(context)!.noResultsFound,
                                   style: TextStyle(color: Colors.white),
                                 ),
                               );
@@ -113,7 +112,7 @@ class CreateGroubScreen extends GetView<CreateGroupController> {
                               itemBuilder: (context, index) {
                                 return Padding(
                                   padding:
-                                      const EdgeInsets.symmetric(vertical: 8.0),
+                                  const EdgeInsets.symmetric(vertical: 8.0),
                                   child: Container(
                                     decoration: BoxDecoration(
                                       color: Colors.blue.shade500,
@@ -148,20 +147,20 @@ class CreateGroubScreen extends GetView<CreateGroupController> {
                     child: Container(
                       constraints: BoxConstraints(maxWidth: 502),
                       padding:
-                          EdgeInsets.symmetric(vertical: 40, horizontal: 80),
+                      EdgeInsets.symmetric(vertical: 40, horizontal: 80),
                       decoration: BoxDecoration(
                           border:
-                              Border.all(color: Theme.of(context).canvasColor),
+                          Border.all(color: Theme.of(context).canvasColor),
                           borderRadius: BorderRadius.circular(8),
                           color: Theme.of(context).colorScheme.primaryContainer
-                          //Color(0x3F06235B),
-                          ),
+                        //Color(0x3F06235B),
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           SizedBox(height: 20),
                           Text(
-                            "group name :",
+                            AppLocalizations.of(context)!.group,
                             style: TextStyle(
                                 color: Theme.of(context)
                                     .textTheme
@@ -175,12 +174,12 @@ class CreateGroubScreen extends GetView<CreateGroupController> {
                             keyboardType: TextInputType.text,
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return 'please enter your email';
+                                return AppLocalizations.of(context)!.groubvalidation ;
                               }
                               return null;
                             },
                             decoration: InputDecoration(
-                              hintText: 'Enter name',
+                              hintText: AppLocalizations.of(context)!.entergroub,
                               prefixIcon: Icon(
                                 Icons.group,
                                 color: Colors.grey,
@@ -197,7 +196,7 @@ class CreateGroubScreen extends GetView<CreateGroupController> {
                           ),
                           SizedBox(height: 20),
                           Text(
-                            "description:",
+                            AppLocalizations.of(context)!.description,
                             style: TextStyle(
                                 color: Theme.of(context)
                                     .textTheme
@@ -212,12 +211,12 @@ class CreateGroubScreen extends GetView<CreateGroupController> {
                             keyboardType: TextInputType.text,
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return 'please enter your email';
+                                return AppLocalizations.of(context)!.descriptionvalidation;
                               }
                               return null;
                             },
                             decoration: InputDecoration(
-                              hintText: 'Enter descriotion',
+                              hintText: AppLocalizations.of(context)!.enterdescriotion,
                               hintStyle: TextStyle(
                                 fontSize: 12,
                                 color: Colors.grey,
@@ -242,13 +241,13 @@ class CreateGroubScreen extends GetView<CreateGroupController> {
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor:
-                                        Theme.of(context).canvasColor,
+                                    Theme.of(context).primaryColor,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(7.11),
                                     ),
                                   ),
                                   child: Text(
-                                    'create',
+                                    AppLocalizations.of(context)!.create,
                                     style: TextStyle(
                                       color: Theme.of(context)
                                           .textTheme
@@ -273,6 +272,7 @@ class CreateGroubScreen extends GetView<CreateGroupController> {
           ),
         ),
       ),
+
     );
   }
 }

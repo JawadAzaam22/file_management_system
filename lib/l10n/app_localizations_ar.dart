@@ -224,4 +224,37 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get canselselect => 'إلغاء التحديد';
+
+  @override
+  String get create => 'أنشئ';
+
+  @override
+  String get description => 'الوصف:';
+
+  @override
+  String get enterdescriotion => 'ادخل الوصف';
+
+  @override
+  String get descriptionvalidation => 'الرجاء ادخال الوصف';
+
+  @override
+  String get group => 'اسم المجموهة :';
+
+  @override
+  String get entergroub => 'ادخل المجموعة';
+
+  @override
+  String get groubvalidation => 'الرجاء ادخال اسم المجموعة:';
+
+  @override
+  String get noResultsFound => 'لا يوجد نتائج';
+
+  @override
+  String get search => 'بحث';
+
+  @override
+  String get addMember => 'اضف اعضاء';
+
+  @override
+  String get createGroup => 'انشئ مجموعة';
 }

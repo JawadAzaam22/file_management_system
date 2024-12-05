@@ -224,4 +224,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get canselselect => 'Cansel Select';
+
+  @override
+  String get create => 'create';
+
+  @override
+  String get description => 'description:';
+
+  @override
+  String get enterdescriotion => 'Enter descriotion';
+
+  @override
+  String get descriptionvalidation => 'please enter your description:';
+
+  @override
+  String get group => 'group name :';
+
+  @override
+  String get entergroub => 'Enter group';
+
+  @override
+  String get groubvalidation => 'please enter your group::';
+
+  @override
+  String get noResultsFound => 'No results found';
+
+  @override
+  String get search => 'Search';
+
+  @override
+  String get addMember => 'add the member';
+
+  @override
+  String get createGroup => 'create group';
 }

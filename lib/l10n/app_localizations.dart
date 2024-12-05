@@ -532,6 +532,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cansel Select'**
   String get canselselect;
+
+  /// No description provided for @create.
+  ///
+  /// In en, this message translates to:
+  /// **'create'**
+  String get create;
+
+  /// No description provided for @description.
+  ///
+  /// In en, this message translates to:
+  /// **'description:'**
+  String get description;
+
+  /// No description provided for @enterdescriotion.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter descriotion'**
+  String get enterdescriotion;
+
+  /// No description provided for @descriptionvalidation.
+  ///
+  /// In en, this message translates to:
+  /// **'please enter your description:'**
+  String get descriptionvalidation;
+
+  /// No description provided for @group.
+  ///
+  /// In en, this message translates to:
+  /// **'group name :'**
+  String get group;
+
+  /// No description provided for @entergroub.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter group'**
+  String get entergroub;
+
+  /// No description provided for @groubvalidation.
+  ///
+  /// In en, this message translates to:
+  /// **'please enter your group::'**
+  String get groubvalidation;
+
+  /// No description provided for @noResultsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No results found'**
+  String get noResultsFound;
+
+  /// No description provided for @search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get search;
+
+  /// No description provided for @addMember.
+  ///
+  /// In en, this message translates to:
+  /// **'add the member'**
+  String get addMember;
+
+  /// No description provided for @createGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'create group'**
+  String get createGroup;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

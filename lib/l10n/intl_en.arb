@@ -72,4 +72,16 @@
 ,"reservtime":"Reservation Time:"
 ,"checkin":"Check In"
 ,"canselselect":"Cansel Select"
+,"create":"create"
+,"description":"description:"
+,"enterdescriotion":"Enter descriotion"
+,"descriptionvalidation":"please enter your description:"
+,"group":"group name :"
+,"entergroub":"Enter group"
+,"groubvalidation":"please enter your group::"
+,"noResultsFound":"No results found"
+,"search":"Search"
+,"addMember":"add the member"
+,"createGroup":"create group"
+
 }

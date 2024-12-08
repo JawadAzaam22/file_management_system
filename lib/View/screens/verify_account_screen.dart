@@ -1,3 +1,4 @@
+import 'package:file_management_system/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -49,7 +50,7 @@ class VerifyAccountScreen extends GetView<VerifyAccountController> {
                         children: [
                           Center(
                             child: Text(
-                              "verify your account",
+                              AppLocalizations.of(context)!.verifyAcc,
                               style: TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.w300,
@@ -63,7 +64,7 @@ class VerifyAccountScreen extends GetView<VerifyAccountController> {
                             height: 10,
                           ),
                           Text(
-                            "Enter the 6-digit that sent to you",
+                            AppLocalizations.of(context)!.codecheck,
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w300,
@@ -77,7 +78,7 @@ class VerifyAccountScreen extends GetView<VerifyAccountController> {
                             children: [
                               SizedBox(height: 20),
                               Text(
-                                "code",
+                                AppLocalizations.of(context)!.code,
                                 style: TextStyle(
                                     color: Theme.of(context)
                                         .textTheme
@@ -122,7 +123,7 @@ class VerifyAccountScreen extends GetView<VerifyAccountController> {
                                     ),
                                   ),
                                   child: Text(
-                                    'verify',
+                                    AppLocalizations.of(context)!.check,
                                     style: TextStyle(
                                       color: Theme.of(context)
                                           .textTheme

@@ -47,6 +47,7 @@ class VerifyCodeController extends GetxController{
             backgroundColor: Colors.green,
             colorText: Colors.white,
           );
+          service.token = r.data['data']['token'];
           navToReset();
 
         } else {
@@ -69,50 +70,5 @@ class VerifyCodeController extends GetxController{
       }}
 
   }
-  // Future<void> verifyOTP() async {
-  //   if (emailController.text.isEmpty || otpController.text.isEmpty) {
-  //     Get.snackbar(
-  //       "خطأ",
-  //       "يرجى ملء جميع الحقول",
-  //       snackPosition: SnackPosition.BOTTOM,
-  //       backgroundColor: Colors.red,
-  //       colorText: Colors.white,
-  //     );
-  //     return;
-  //   }
-  //
-  //   _isLoading.value = true;
-  //
-  //   try {
-  //     final response = await DioClient.instance.post(
-  //       "/auth/forgetPassword/checkCode",
-  //       data: {
-  //         //"email": emailController.text,
-  //         "code": otpController.text,
-  //       },
-  //     );
-  //
-  //     if (response.statusCode == 200) {
-  //       Get.snackbar(
-  //         "نجاح",
-  //         "تم التحقق من الرمز بنجاح!",
-  //         snackPosition: SnackPosition.BOTTOM,
-  //         backgroundColor: Colors.green,
-  //         colorText: Colors.white,
-  //       );
-  //
-  //       Get.offNamed("/reset-password");
-  //     }
-  //   } catch (e) {
-  //     Get.snackbar(
-  //       "خطأ",
-  //       "فشل التحقق من الرمز: ${e.toString()}",
-  //       snackPosition: SnackPosition.BOTTOM,
-  //       backgroundColor: Colors.red,
-  //       colorText: Colors.white,
-  //     );
-  //   } finally {
-  //     isLoading.value = false;
-  //   }
-  // }
+
 }

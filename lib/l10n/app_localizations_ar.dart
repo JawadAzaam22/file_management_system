@@ -257,4 +257,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get createGroup => 'انشئ مجموعة';
+
+  @override
+  String get verifyAcc => 'تأكيد حسابك';
+
+  @override
+  String get ready => 'جاهز';
+
+  @override
+  String get splashH2 => 'شارك ملفاتك مع مجموعاتك ';
+
+  @override
+  String get splashH1 => 'نظام ادارة الملفات';
+
+  @override
+  String get refresh => 'تحديث';
 }

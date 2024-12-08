@@ -125,6 +125,7 @@ Future<void> fetchInvitations() async {
     print("sss");
 
     List<dynamic> temp = r.data["data"];
+    invites.clear();
     if (r.statusCode == 200) {
       invites.addAll(temp.map((e) => Data.fromJson(e)));
       print(invites.length);

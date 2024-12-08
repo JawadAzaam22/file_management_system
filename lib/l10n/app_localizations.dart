@@ -598,6 +598,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'create group'**
   String get createGroup;
+
+  /// No description provided for @verifyAcc.
+  ///
+  /// In en, this message translates to:
+  /// **'verify your account'**
+  String get verifyAcc;
+
+  /// No description provided for @ready.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready'**
+  String get ready;
+
+  /// No description provided for @splashH2.
+  ///
+  /// In en, this message translates to:
+  /// **'share your files with our group '**
+  String get splashH2;
+
+  /// No description provided for @splashH1.
+  ///
+  /// In en, this message translates to:
+  /// **'File Mangement System'**
+  String get splashH1;
+
+  /// No description provided for @refresh.
+  ///
+  /// In en, this message translates to:
+  /// **'refresh'**
+  String get refresh;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

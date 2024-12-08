@@ -257,4 +257,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get createGroup => 'create group';
+
+  @override
+  String get verifyAcc => 'verify your account';
+
+  @override
+  String get ready => 'Ready';
+
+  @override
+  String get splashH2 => 'share your files with our group ';
+
+  @override
+  String get splashH1 => 'File Mangement System';
+
+  @override
+  String get refresh => 'refresh';
 }

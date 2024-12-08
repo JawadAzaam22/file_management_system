@@ -31,9 +31,34 @@ class InvitationsScreen extends StatelessWidget {
         ),
         Expanded(
           flex: 1,
-            child: SizedBox(
-          height: 5,
-        )),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: Row(
+
+                mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+              ElevatedButton(
+                  onPressed: () async {
+                await controller.fetchInvitations();
+              },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).canvasColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(7.11),
+                  ),
+                ),
+                child: Text(
+                  AppLocalizations.of(context)!.refresh,
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+                        ],
+                      ),
+            )),
         Expanded(
           flex: 4,
           child: Obx(

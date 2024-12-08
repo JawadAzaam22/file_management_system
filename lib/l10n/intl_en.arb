@@ -83,5 +83,10 @@
 ,"search":"Search"
 ,"addMember":"add the member"
 ,"createGroup":"create group"
+,"verifyAcc":"verify your account"
+,"ready":"Ready"
+,"splashH2":"share your files with our group "
+,"splashH1":"File Mangement System"
+,"refresh":"refresh"
 
 }

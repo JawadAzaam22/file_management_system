@@ -1,3 +1,4 @@
+import 'package:file_management_system/l10n/app_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,7 +36,7 @@ class SplashScreen extends GetView<SplashController> {
                 ),
                 SizedBox(height: 20,),
                 Text(
-                  'File Mangement System',
+                  AppLocalizations.of(context)!.splashH1,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
@@ -47,7 +48,7 @@ class SplashScreen extends GetView<SplashController> {
                   height: 10,
                 ),
                 Text(
-                  'share your files with our group ',
+                  AppLocalizations.of(context)!.splashH2,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
@@ -71,7 +72,7 @@ class SplashScreen extends GetView<SplashController> {
                       ),
                     ),
                     child: Text(
-                      'Ready',
+                      AppLocalizations.of(context)!.ready,
                       style: TextStyle(
                         color: Theme.of(context).textTheme.bodyLarge?.color,
                         fontSize: 16,

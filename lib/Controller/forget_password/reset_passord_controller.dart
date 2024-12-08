@@ -62,7 +62,7 @@ late String email ;
             backgroundColor: Colors.green,
             colorText: Colors.white,
           );
-          service.token = r.data['data']['token'];
+
           print(service.token.toString());
           Get.offAndToNamed("/home");
 
